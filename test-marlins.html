@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>TEST: Marlins vs. Nationals - GetAllTix.com</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body class="bg-gray-100 p-6">
+
+    <div class="max-w-4xl mx-auto">
+        
+        <!-- Test Header -->
+        <div class="mb-10 p-6 bg-white rounded-2xl shadow-lg border border-blue-200">
+            <h1 class="text-2xl font-black text-blue-600">GetAllTix FUNCTIONAL TEST LAB</h1>
+            <p class="text-gray-600">Event: <strong>Washington Nationals @ Miami Marlins (May 10, 2026)</strong></p>
+            <p class="text-xs text-gray-400 mt-1 uppercase tracking-widest">Environment: Development / Mother's Day Matchup</p>
+        </div>
+
+        <!-- The Comparison UI -->
+        <div id="comparison-engine" class="space-y-4">
+            <div class="text-center py-10 text-gray-500">Normalizing ticket data...</div>
+        </div>
+
+    </div>
+
+    <script>
+        // 1. Value Score Logic (Marlins vs Nationals)
+        function calculateValueScore(section, price) {
+            let expectedPrice = 25; 
+            const sec = parseInt(section);
+
+            // Tiered pricing for LoanDepot Park
+            if (sec <= 30) expectedPrice = 120; // Lower expected price vs Dodgers
+            else if (sec >= 100 && sec <= 130) expectedPrice = 55;
+            else if (sec >= 200 && sec <= 230) expectedPrice = 35;
+            else if (sec >= 300 && sec <= 330) expectedPrice = 20;
+            else if (sec >= 400) expectedPrice = 12;
+
+            let score = (expectedPrice / price) * 7.5; 
+            return Math.min(Math.max(score, 1), 10).toFixed(1);
+        }
+
+        // 2. Updated Simulation Data (Nationals Game)
+        const rawApiData = {
+            stubhub: [
+                { id: "sh1", zoneName: "15", row: "3", price: { amount: 85.00 }, priceWithFees: { amount: 108.00 }, eventId: "marlins-wsh" },
+                { id: "sh2", zoneName: "310", row: "5", price: { amount: 15.00 }, priceWithFees: { amount: 19.50 }, eventId: "marlins-wsh" }
+            ],
+            tickpick: [
+                { listingId: "tp1", section: "112", row: "8", price: 42.00, buyUrl: "#" },
+                { listingId: "tp2", section: "415", row: "1", price: 18.00, buyUrl: "#" }
+            ],
+            ticketmaster: [
+                { entryId: "tm1", seatmap: { staticSectionName: "22" }, seatmap: { row: "10" }, prices: [{ min: 95.00, fees: 22.50 }], url: "#" }
+            ]
+        };
+
+        // 3. Normalization Function
+        function normalizeData(rawData, vendor) {
+            let item = {};
+            switch(vendor) {
+                case 'StubHub':
+                    item = {
+                        vendor: 'StubHub',
+                        section: rawData.zoneName,
+                        row: rawData.row,
+                        totalPrice: parseFloat(rawData.priceWithFees?.amount || rawData.price.amount),
+                        link: "#",
+                        style: 'border-orange-400 text-orange-600'
+                    };
+                    break;
+                case 'TickPick':
+                    item = {
+                        vendor: 'TickPick',
+                        section: rawData.section,
+                        row: rawData.row,
+                        totalPrice: parseFloat(rawData.price),
+                        link: rawData.buyUrl,
+                        style: 'border-blue-400 text-blue-600'
+                    };
+                    break;
+                case 'Ticketmaster':
+                    item = {
+                        vendor: 'Ticketmaster',
+                        section: rawData.seatmap?.staticSectionName || "22",
+                        row: rawData.seatmap?.row || "10",
+                        totalPrice: parseFloat(rawData.prices[0].min + (rawData.prices[0].fees || 0)),
+                        link: rawData.url,
+                        style: 'border-blue-900 text-blue-950'
+                    };
+                    break;
+            }
+            item.score = calculateValueScore(item.section, item.totalPrice);
+            return item;
+        }
+
+        // 4. Render Engine
+        function runTest() {
+            const normalizedList = [
+                ...rawApiData.stubhub.map(t => normalizeData(t, 'StubHub')),
+                ...rawApiData.tickpick.map(t => normalizeData(t, 'TickPick')),
+                ...rawApiData.ticketmaster.map(t => normalizeData(t, 'Ticketmaster'))
+            ].sort((a, b) => a.totalPrice - b.totalPrice);
+
+            const container = document.getElementById('comparison-engine');
+            container.innerHTML = `<h2 class="text-xl font-bold mb-4">${normalizedList.length} Comparison Results</h2>`;
+
+            normalizedList.forEach((ticket, index) => {
+                const isBest = index === 0;
+                container.innerHTML += `
+                    <div class="bg-white p-5 rounded-2xl shadow flex justify-between items-center border-l-4 ${ticket.style} ${isBest ? 'ring-2 ring-green-500 shadow-xl' : ''} relative mb-4">
+                        <div>
+                            <span class="font-bold uppercase text-xs tracking-widest">${ticket.vendor}</span>
+                            <p class="text-2xl font-black text-gray-950">Sec ${ticket.section}, Row ${ticket.row}</p>
+                            <span class="inline-flex items-center gap-1 text-sm font-bold ${ticket.score > 7 ? 'text-green-600' : 'text-orange-600'}">
+                                Value Score: ${ticket.score}/10
+                            </span>
+                        </div>
+                        <div class="text-right flex items-center gap-4">
+                            <span class="text-3xl font-black text-gray-950">$${ticket.totalPrice.toFixed(2)}</span>
+                            <button class="bg-blue-600 hover:bg-blue-700 text-white font-bold py-2 px-8 rounded-full transition-all">View</button>
+                        </div>
+                    </div>
+                `;
+            });
+        }
+        runTest();
+    </script>
+</body>
+</html>
