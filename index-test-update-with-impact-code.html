@@ -1,0 +1,219 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>getalltix.com - Advanced Metasearch Control Panel</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght=400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        body { font-family: 'Inter', sans-serif; }
+    </style>
+
+    <!-- Impact.com Affiliate Tracking Script -->
+    <script type="text/javascript">
+        (function(i,m,p,a,c,t){c.ire_o=p;c[p]=c[p]||function(){(c[p].a=c[p].a||[]).push(arguments)};t=a.createElement(m);
+        var z=a.getElementsByTagName(m)[0];t.async=1;t.src=i;z.parentNode.insertBefore(t,z)})
+        ('https://utt.impactcdn.com/P-A7378669-65aa-40ed-a1b0-753d27e5e8a21.js','script','impactStat',document,window);
+        
+        impactStat('transformLinks');
+        impactStat('trackImpression');
+    </script>
+</head>
+<body class="bg-gray-50 text-gray-900 antialiased font-sans">
+
+  <header class="bg-gradient-to-b from-blue-50 to-white px-4 pt-12 pb-8 text-center border-b border-gray-100">
+    <div class="mx-auto max-w-3xl">
+      <h1 class="text-3xl font-black tracking-tight text-blue-600 sm:text-4xl uppercase">
+        getalltix<span class="text-gray-900">.com</span>
+      </h1>
+      <p class="mt-2 text-sm text-gray-500 font-medium">
+        Sandbox Search Engine: Type <span class="underline font-bold text-gray-700">Chicago</span>, <span class="underline font-bold text-gray-700">Miami</span>, or <span class="underline font-bold text-gray-700">Taylor</span> to test aggregation rules.
+      </p>
+
+      <div class="mt-8 relative max-w-2xl mx-auto shadow-md rounded-2xl">
+        <div class="absolute inset-y-0 left-0 flex items-center pl-4 pointer-events-none">
+          <svg class="h-5 w-5 text-gray-400" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" />
+          </svg>
+        </div>
+        <input 
+          id="search-input"
+          type="text" 
+          placeholder="Search teams, artists, cities, or venues..." 
+          class="w-full pl-11 pr-4 py-4 rounded-2xl border border-gray-200 bg-white focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent text-base transition-all placeholder:text-gray-400"
+        />
+      </div>
+    </div>
+  </header>
+
+  <nav class="sticky top-0 z-40 w-full border-b border-gray-200 bg-white/95 backdrop-blur-sm shadow-sm">
+    <div class="mx-auto max-w-7xl px-4">
+      <div class="scrollbar-none flex h-14 items-center gap-1 overflow-x-auto md:overflow-visible md:justify-center md:gap-2">
+        <button class="flex shrink-0 items-center gap-1.5 rounded-full px-3 py-1.5 text-sm font-semibold text-gray-700 hover:bg-gray-100">
+          <span>⚾</span><span>Baseball</span>
+        </button>
+        <button class="flex shrink-0 items-center gap-1.5 rounded-full px-3 py-1.5 text-sm font-semibold text-gray-700 hover:bg-gray-100">
+          <span>🏀</span><span>Basketball</span>
+        </button>
+        <button class="flex shrink-0 items-center gap-1.5 rounded-full px-3 py-1.5 text-sm font-semibold text-gray-700 hover:bg-gray-100">
+          <span>🏈</span><span>Football</span>
+        </button>
+        <button class="flex shrink-0 items-center gap-1.5 rounded-full px-3 py-1.5 text-sm font-semibold text-gray-700 hover:bg-gray-100">
+          <span>🎤</span><span>Concerts</span>
+        </button>
+      </div>
+    </div>
+  </nav>
+
+  <main class="mx-auto max-w-4xl px-4 py-10">
+    <div class="flex items-baseline justify-between mb-6 border-b border-gray-200 pb-3">
+      <h2 id="feed-title" class="text-xl font-black text-gray-900 tracking-tight uppercase">Featured National Events</h2>
+      <span class="text-xs font-bold text-gray-400 bg-gray-100 px-2 py-1 rounded shadow-sm" id="results-count">Showing default feed</span>
+    </div>
+
+    <div id="results-container" class="space-y-4">
+      <div class="text-center py-12 text-gray-400 font-medium bg-white rounded-2xl border border-dashed border-gray-200">
+        Start typing a search term above to activate aggregate data pipeline matching.
+      </div>
+    </div>
+  </main>
+
+  <script>
+    // 1. MESSY PAYLOAD DATABASE (Simulating raw responses from different platform endpoints)
+    const RAW_EXTERNAL_DATA = [
+      // Chicago Cubs Event Variations
+      { provider: 'Ticketmaster', event_name: 'Chicago Cubs vs St. Louis Cardinals', venue: 'Wrigley Field', date: '2026-07-04', base_price: 25.00, estimated_fees: 8.50 },
+      { provider: 'StubHub', event_name: 'St. Louis Cardinals at Chicago Cubs', venue: 'Wrigley Field - Chicago', date: '2026-07-04', base_price: 22.00, estimated_fees: 9.00 },
+      { provider: 'TickPick', event_name: 'Chicago Cubs vs. St. Louis Cardinals', venue: 'Wrigley Field (Home of the Cubs)', date: '2026-07-04', base_price: 32.00, estimated_fees: 0.00 },
+
+      // Taylor Swift Event Variations
+      { provider: 'Ticketmaster', event_name: 'Taylor Swift: The Eras Tour', venue: 'Soldier Field', date: '2026-10-12', base_price: 195.00, estimated_fees: 45.00 },
+      { provider: 'StubHub', event_name: 'Taylor Swift', venue: 'Soldier Field Stadium', date: '2026-10-12', base_price: 180.00, estimated_fees: 55.00 },
+
+      // Miami Hurricanes Event Variations
+      { provider: 'Ticketmaster', event_name: 'Miami Hurricanes vs Florida Gators', venue: 'Hard Rock Stadium', date: '2026-09-05', base_price: 45.00, estimated_fees: 14.00 },
+      { provider: 'Vivid Seats', event_name: 'Florida Gators at Miami Hurricanes', venue: 'Hard Rock Stadium - Miami Gardens', date: '2026-09-05', base_price: 42.00, estimated_fees: 15.50 }
+    ];
+
+    // 2. DICTIONARY NORMALIZATION FUNCTION
+    // Strips text down to standard rules so we can group messy alternative phrasing safely
+    function getNormalizedVenueKey(venueName) {
+      const lower = venueName.toLowerCase();
+      if (lower.includes('wrigley')) return 'wrigley_field_chicago';
+      if (lower.includes('soldier')) return 'soldier_field_chicago';
+      if (lower.includes('hard rock')) return 'hard_rock_stadium_miami';
+      return venueName.toLowerCase().replace(/[^a-z0-9]/g, '');
+    }
+
+    function getNormalizedEventKey(eventName) {
+      const lower = eventName.toLowerCase();
+      if (lower.includes('cubs') || lower.includes('cardinals')) return 'cubs_vs_cardinals_2026';
+      if (lower.includes('taylor') || lower.includes('eras')) return 'taylor_swift_eras_2026';
+      if (lower.includes('hurricanes') || lower.includes('gators')) return 'hurricanes_vs_gators_2026';
+      return eventName.toLowerCase().replace(/[^a-z0-9]/g, '');
+    }
+
+    // 3. THE AGGREGATION LOOKUP CONTROLLER
+    function runSearchAggregation(keyword) {
+      if (!keyword || keyword.length < 2) {
+        document.getElementById('results-container').innerHTML = `<div class="text-center py-12 text-gray-400 font-medium bg-white rounded-2xl border border-dashed border-gray-200">Type "Chicago", "Miami", or "Taylor" to see aggregation resolve live.</div>`;
+        document.getElementById('results-count').innerText = "Empty input";
+        return;
+      }
+
+      const query = keyword.toLowerCase();
+      
+      // Filter out any raw listings that don't match the search term
+      const rawMatches = RAW_EXTERNAL_DATA.filter(item => 
+        item.event_name.toLowerCase().includes(query) || 
+        item.venue.toLowerCase().includes(query)
+      );
+
+      // --- THE LOGICAL ENGINE CORE ---
+      // Group the different data strings using our normalized nickname keys
+      const unifiedGroups = {};
+
+      rawMatches.forEach(listing => {
+        const eventKey = getNormalizedEventKey(listing.event_name);
+        const venueKey = getNormalizedVenueKey(listing.venue);
+        const groupKey = `${eventKey}_${venueKey}_${listing.date}`;
+
+        // Calculate checkout price immediately to remain honest in ranking
+        const totalCheckoutPrice = listing.base_price + listing.estimated_fees;
+
+        if (!unifiedGroups[groupKey]) {
+          // Initialize clean unified dictionary template wrapper
+          unifiedGroups[groupKey] = {
+            displayTitle: listing.event_name.replace(/at|vs\./gi, 'vs'), // Clean standard presentation
+            displayVenue: listing.venue.split('-')[0].split('(')[0].trim(), // Clean standard venue title text
+            date: listing.date,
+            allVendorDeals: []
+          };
+        }
+
+        // Add this specific vendor option into our merged bucket collection
+        unifiedGroups[groupKey].allVendorDeals.push({
+          providerName: listing.provider,
+          totalPrice: totalCheckoutPrice,
+          basePrice: listing.base_price,
+          fees: listing.estimated_fees
+        });
+      });
+
+      // 4. RENDER UI CARDS DOCK OUTPUT
+      const resultsContainer = document.getElementById('results-container');
+      resultsContainer.innerHTML = ''; // Wipe past search results from viewport
+
+      const groupKeys = Object.keys(unifiedGroups);
+      document.getElementById('results-count').innerText = `Resolved ${rawMatches.length} raw platform rows into ${groupKeys.length} clean event asset`;
+
+      if (groupKeys.length === 0) {
+        resultsContainer.innerHTML = `<div class="text-center py-12 text-gray-400 font-medium bg-white rounded-2xl border border-gray-200">No sandbox matches found. Try typing "Chicago".</div>`;
+        return;
+      }
+
+      groupKeys.forEach(key => {
+        const eventGroup = unifiedGroups[key];
+        
+        // Sort individual ticket options inside the event so cheapest is first
+        eventGroup.allVendorDeals.sort((a, b) => a.totalPrice - b.totalPrice);
+
+        // Build vendor price button layout HTML strings dynamically
+        let vendorPillsHTML = '';
+        eventGroup.allVendorDeals.forEach(deal => {
+          vendorPillsHTML += `
+            <div class="bg-gray-50 border border-gray-200 rounded-xl p-2.5 text-center flex-1 min-w-[120px]">
+              <p class="text-xs font-bold text-gray-500 uppercase">${deal.providerName}</p>
+              <p class="text-lg font-black text-green-600">$${deal.totalPrice.toFixed(2)}</p>
+              <p class="text-[10px] text-gray-400 font-medium">$${deal.basePrice} ticket + $${deal.fees} fee</p>
+            </div>
+          `;
+        });
+
+        const cardHTML = `
+          <div class="bg-white border border-gray-200 rounded-2xl p-6 shadow-sm space-y-4">
+            <div class="border-b border-gray-100 pb-3">
+              <span class="bg-blue-50 text-blue-700 text-xs font-bold px-2 py-0.5 rounded-md uppercase tracking-wider">Unified Aggregate Record</span>
+              <h3 class="text-lg font-black text-gray-900 mt-1">${eventGroup.displayTitle}</h3>
+              <p class="text-sm text-gray-500 font-medium">📍 ${eventGroup.displayVenue} • 📅 ${eventGroup.date}</p>
+            </div>
+            <div>
+              <p class="text-xs font-bold text-gray-400 uppercase mb-2 tracking-wide">Real-time offers indexed sorted by true lowest total cost:</p>
+              <div class="flex flex-wrap gap-2">
+                ${vendorPillsHTML}
+              </div>
+            </div>
+          </div>
+        `;
+        resultsContainer.innerHTML += cardHTML;
+      });
+    }
+
+    // Bind logic interface actions directly to browser field input
+    document.getElementById('search-input').addEventListener('input', (e) => {
+      runSearchAggregation(e.target.value);
+    });
+  </script>
+</body>
+</html
