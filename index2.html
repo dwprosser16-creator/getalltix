@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>GetAllTix - Compare All Event Tickets on One Page</title>
+    <!-- Use Tailwind Play for easy setup -->
+    <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body class="bg-gray-50 text-gray-900 flex flex-col min-h-screen">
+
+    <!-- Header with logo and tagline -->
+    <header class="p-6 border-b bg-white">
+        <div class="max-w-7xl mx-auto flex justify-between items-center">
+            <div class="flex items-center gap-2">
+                <!-- Placeholder Logo -->
+                <div class="bg-blue-600 text-white font-bold text-xl p-3 rounded-lg">GA</div>
+                <h1 class="text-3xl font-extrabold text-blue-950">GetAllTix<span class="text-blue-600">.com</span></h1>
+            </div>
+            <span class="text-sm font-medium text-gray-500">The Universal Ticket Aggregator</span>
+        </div>
+    </header>
+
+    <!-- Main Content: Value Prop & Signup -->
+    <main class="flex-grow flex items-center justify-center py-20 px-4">
+        <div class="text-center max-w-3xl border p-12 rounded-3xl bg-white shadow-xl">
+            <h2 class="text-5xl font-extrabold tracking-tight text-gray-950 mb-6">
+                Compare <span class="text-blue-600">All</span> Event Tickets<br>
+                on One Page. Effortlessly.
+            </h2>
+            <p class="text-xl text-gray-600 mb-12">
+                GetAllTix aggregates real-time listings from all major vendors, sports teams, and concert tours. Find the best seats with <strong class="text-gray-900">all-in pricing</strong>, and zero hidden fees. The universal ticket aggregator is almost here.
+            </p>
+
+            <!-- Waitlist Signup Form -->
+            <form class="flex flex-col sm:flex-row gap-4 max-w-xl mx-auto border p-2 rounded-full bg-gray-50 shadow-inner">
+                <input type="email" placeholder="Enter your email to join the waitlist" class="flex-grow px-6 py-4 rounded-full text-lg border-0 bg-transparent focus:ring-2 focus:ring-blue-300" required>
+                <button type="submit" class="bg-blue-600 hover:bg-blue-700 text-white font-bold text-lg px-10 py-4 rounded-full transition">
+                    Notify Me When We Launch
+                </button>
+            </form>
+        </div>
+    </main>
+
+    <!-- Footer with mandatory links for affiliate approval -->
+    <footer class="p-10 border-t bg-white mt-auto">
+        <div class="max-w-7xl mx-auto grid grid-cols-2 sm:grid-cols-4 gap-8 text-sm text-gray-600">
+            <div>© 2026 GetAllTix. All rights reserved.</div>
+            <a href="#" class="hover:text-blue-600">About Us</a>
+            <a href="#" class="hover:text-blue-600">Privacy Policy</a>
+            <a href="#" class="hover:text-blue-600">Terms of Service</a>
+        </div>
+    </footer>
+
+</body>
+</html>
