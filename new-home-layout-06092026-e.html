@@ -1,0 +1,973 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>GetAllTix - Compare All Event Tickets on One Page</title>
+    <!-- Tailwind CSS Play CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- FontAwesome for Floating Menu Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+    <!-- Impact.com Affiliate Tracking Script -->
+    <script type="text/javascript">
+        (function(i,m,p,a,c,t){c.ire_o=p;c[p]=c[p]||function(){(c[p].a=c[p].a||[]).push(arguments)};t=a.createElement(m);
+        var z=a.getElementsByTagName(m)[0];t.async=1;t.src=i;z.parentNode.insertBefore(t,z)})
+        ('https://utt.impactcdn.com/P-A7378669-65aa-40ed-a1b0-753d27e5e8a21.js','script','impactStat',document,window);
+        
+        impactStat('transformLinks');
+        impactStat('trackImpression');
+    </script>
+</head>
+<body class="bg-gray-50 text-gray-900 flex flex-col min-h-screen scroll-smooth">
+
+    <!-- Header Section -->
+    <header class="p-1 border-b bg-white sticky top-0 z-40 shadow-sm">
+        <div class="max-w-7xl mx-auto flex justify-between items-center">
+            <div class="flex items-center gap-3">
+                <img src="images/GetAllTix-logo-final-web-lg.png" alt="GetAllTix Logo" class="h-14 w-auto object-contain">
+            </div>
+            <span class="text-sm font-bold text-blue-600 bg-blue-50 px-3 py-1.5 rounded-full uppercase tracking-wider">⚽ World Cup 2026 Edition</span>
+        </div>
+    </header>
+
+  <!-- Low-Profile Floating Icon Navigation Menu Bar (Fixed Below Header) -->
+<div class="fixed top-[65px] left-1/2 -translate-x-1/2 z-50 bg-gray-900/95 backdrop-blur-md px-8 py-1.5 rounded-b-2xl shadow-2xl border-x border-b border-white/10 flex items-center gap-6 sm:gap-8 md:gap-10 max-w-[95vw] overflow-x-auto no-scrollbar">
+    
+    <!-- Home Icon -->
+    <a href="#" class="flex flex-col items-center gap-0.5 group text-blue-500 flex-shrink-0">
+        <i class="fa-solid fa-house text-2xl transition-transform group-hover:-translate-y-0.5"></i>
+        <span class="text-[11px] font-bold tracking-wide uppercase">Home</span>
+    </a>
+
+    <!-- NFL / Football Icon -->
+    <div class="relative group flex flex-shrink-0">
+        <a href="#football" class="flex flex-col items-center gap-0.5 text-gray-400 hover:text-white transition-colors">
+            <i class="fa-solid fa-football text-2xl transition-transform group-hover:-translate-y-0.5"></i>
+            <span class="text-[11px] font-bold tracking-wide uppercase">Football</span>
+        </a>
+    </div>
+
+    <!-- NBA / Basketball Icon -->
+    <div class="relative group flex flex-shrink-0">
+        <a href="#basketball" class="flex flex-col items-center gap-0.5 text-gray-400 hover:text-white transition-colors">
+            <i class="fa-solid fa-basketball text-2xl transition-transform group-hover:-translate-y-0.5"></i>
+            <span class="text-[11px] font-bold tracking-wide uppercase">Basketball</span>
+        </a>
+    </div>
+
+    <!-- MLB / Baseball Mega-Dropdown Category -->
+    <div class="relative group flex flex-shrink-0">
+        <a href="#baseball" class="flex flex-col items-center gap-0.5 text-gray-400 hover:text-white transition-colors">
+            <i class="fa-solid fa-baseball-bat-ball text-2xl transition-transform group-hover:-translate-y-0.5"></i>
+            <span class="text-[11px] font-bold tracking-wide uppercase">Baseball</span>
+        </a>
+        
+        <!-- Baseball Dropdown Menu Container -->
+        <div class="absolute left-1/2 -translate-x-1/2 top-full pt-3 hidden group-hover:block z-50">
+            <div class="bg-gray-900/98 border border-white/10 rounded-xl shadow-2xl p-6 w-[560px] max-h-[80vh] overflow-y-auto no-scrollbar flex flex-col gap-6 backdrop-blur-md">
+                
+                <!-- Sub-Category Tier 1: NCAA Baseball -->
+                <div>
+                    <a href="#ncaa-baseball" class="text-sm font-bold text-blue-400 hover:text-blue-300 flex items-center gap-2 tracking-wide uppercase border-b border-white/5 pb-2">
+                        <i class="fa-solid fa-graduation-cap text-xs"></i> NCAA Baseball
+                    </a>
+                </div>
+
+                <!-- Sub-Category Tier 2: MLB Section -->
+                <div class="flex flex-col gap-4">
+                    <div class="text-sm font-bold text-white tracking-wide uppercase border-b border-white/5 pb-2">
+                        MLB Baseball
+                    </div>
+                    
+                    <!-- Featured Events Grid -->
+                    <div class="bg-gray-800/40 p-3 rounded-lg border border-white/5">
+                        <span class="text-[10px] font-extrabold uppercase tracking-widest text-gray-500 block mb-2">Featured Events</span>
+                        <div class="grid grid-cols-2 sm:grid-cols-3 gap-2">
+                            <a href="#world-series" class="text-xs text-gray-300 hover:text-white font-medium transition-colors">World Series</a>
+                            <a href="#all-star-game" class="text-xs text-gray-300 hover:text-white font-medium transition-colors">MLB All-Star Game</a>
+                            <a href="#mlb-playoffs" class="text-xs text-gray-300 hover:text-white font-medium transition-colors">MLB Playoffs</a>
+                            <a href="#spring-training" class="text-xs text-gray-300 hover:text-white font-medium transition-colors">Spring Training</a>
+                            <a href="#home-run-derby" class="text-xs text-gray-300 hover:text-white font-medium transition-colors">MLB Home Run Derby</a>
+                        </div>
+                    </div>
+
+                    <!-- Leagues & Teams Layout -->
+                    <div class="grid grid-cols-2 gap-6 mt-1">
+                        <!-- American League Column -->
+                        <div>
+                            <span class="text-[11px] font-bold text-blue-400 tracking-wider uppercase block mb-2 pb-1 border-b border-white/5">American League</span>
+                            <div class="flex flex-col gap-1.5 max-h-[220px] overflow-y-auto pr-1 no-scrollbar text-xs">
+                                <a href="#athletics" class="text-gray-400 hover:text-white transition-colors">Athletics</a>
+                                <a href="#orioles" class="text-gray-400 hover:text-white transition-colors">Baltimore Orioles</a>
+                                <a href="#red-sox" class="text-gray-400 hover:text-white transition-colors">Boston Red Sox</a>
+                                <a href="#white-sox" class="text-gray-400 hover:text-white transition-colors">Chicago White Sox</a>
+                                <a href="#guardians" class="text-gray-400 hover:text-white transition-colors">Cleveland Guardians</a>
+                                <a href="#tigers" class="text-gray-400 hover:text-white transition-colors">Detroit Tigers</a>
+                                <a href="#astros" class="text-gray-400 hover:text-white transition-colors">Houston Astros</a>
+                                <a href="#royals" class="text-gray-400 hover:text-white transition-colors">Kansas City Royals</a>
+                                <a href="#angels" class="text-gray-400 hover:text-white transition-colors">Los Angeles Angels</a>
+                                <a href="#twins" class="text-gray-400 hover:text-white transition-colors">Minnesota Twins</a>
+                                <a href="#yankees" class="text-gray-400 hover:text-white transition-colors">New York Yankees</a>
+                                <a href="#mariners" class="text-gray-400 hover:text-white transition-colors">Seattle Mariners</a>
+                                <a href="#rays" class="text-gray-400 hover:text-white transition-colors">Tampa Bay Rays</a>
+                                <a href="#rangers" class="text-gray-400 hover:text-white transition-colors">Texas Rangers</a>
+                                <a href="#blue-jays" class="text-gray-400 hover:text-white transition-colors">Toronto Blue Jays</a>
+                            </div>
+                        </div>
+
+                        <!-- National League Column -->
+                        <div>
+                            <span class="text-[11px] font-bold text-red-400 tracking-wider uppercase block mb-2 pb-1 border-b border-white/5">National League</span>
+                            <div class="flex flex-col gap-1.5 max-h-[220px] overflow-y-auto pr-1 no-scrollbar text-xs">
+                                <a href="#diamondbacks" class="text-gray-400 hover:text-white transition-colors">Arizona Diamondbacks</a>
+                                <a href="#braves" class="text-gray-400 hover:text-white transition-colors">Atlanta Braves</a>
+                                <a href="#cubs" class="text-gray-400 hover:text-white transition-colors">Chicago Cubs</a>
+                                <a href="#reds" class="text-gray-400 hover:text-white transition-colors">Cincinnati Reds</a>
+                                <a href="#rockies" class="text-gray-400 hover:text-white transition-colors">Colorado Rockies</a>
+                                <a href="#dodgers" class="text-gray-400 hover:text-white transition-colors">Los Angeles Dodgers</a>
+                                <a href="#marlins" class="text-gray-400 hover:text-white transition-colors">Miami Marlins</a>
+                                <a href="#brewers" class="text-gray-400 hover:text-white transition-colors">Milwaukee Brewers</a>
+                                <a href="#mets" class="text-gray-400 hover:text-white transition-colors">New York Mets</a>
+                                <a href="#phillies" class="text-gray-400 hover:text-white transition-colors">Philadelphia Phillies</a>
+                                <a href="#pirates" class="text-gray-400 hover:text-white transition-colors">Pittsburgh Pirates</a>
+                                <a href="#padres" class="text-gray-400 hover:text-white transition-colors">San Diego Padres</a>
+                                <a href="#giants" class="text-gray-400 hover:text-white transition-colors">San Francisco Giants</a>
+                                <a href="#cardinals" class="text-gray-400 hover:text-white transition-colors">St. Louis Cardinals</a>
+                                <a href="#nationals" class="text-gray-400 hover:text-white transition-colors">Washington Nationals</a>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- NHL / Hockey Icon -->
+    <div class="relative group flex flex-shrink-0">
+        <a href="#hockey" class="flex flex-col items-center gap-0.5 text-gray-400 hover:text-white transition-colors">
+            <i class="fa-solid fa-hockey-puck text-2xl transition-transform group-hover:-translate-y-0.5"></i>
+            <span class="text-[11px] font-bold tracking-wide uppercase">Hockey</span>
+        </a>
+    </div>
+
+    <!-- Soccer Icon -->
+    <div class="relative group flex flex-shrink-0">
+        <a href="#soccer" class="flex flex-col items-center gap-0.5 text-gray-400 hover:text-white transition-colors">
+            <i class="fa-solid fa-soccer-ball text-2xl transition-transform group-hover:-translate-y-0.5"></i>
+            <span class="text-[11px] font-bold tracking-wide uppercase">Soccer</span>
+        </a>
+    </div>
+
+    <!-- Concerts Icon -->
+    <div class="relative group flex flex-shrink-0">
+        <a href="#concerts" class="flex flex-col items-center gap-0.5 text-gray-400 hover:text-white transition-colors">
+            <i class="fa-solid fa-music text-2xl transition-transform group-hover:-translate-y-0.5"></i>
+            <span class="text-[11px] font-bold tracking-wide uppercase">Music</span>
+        </a>
+    </div>
+
+    <!-- Theater Icon -->
+    <div class="relative group flex flex-shrink-0">
+        <a href="#theater" class="flex flex-col items-center gap-0.5 text-gray-400 hover:text-white transition-colors">
+            <i class="fa-solid fa-masks-theater text-2xl transition-transform group-hover:-translate-y-0.5"></i>
+            <span class="text-[11px] font-bold tracking-wide uppercase">Theater</span>
+        </a>
+    </div>
+
+    <!-- More Dropdown Trigger -->
+    <div class="relative group flex flex-shrink-0">
+        <a href="#more-events" class="flex flex-col items-center gap-0.5 text-gray-400 hover:text-white transition-colors">
+            <i class="fa-solid fa-layer-group text-2xl transition-transform group-hover:-translate-y-0.5"></i>
+            <span class="text-[11px] font-bold tracking-wide uppercase">More</span>
+        </a>
+    </div>
+    
+</div>
+
+    <!-- Main Content Container -->
+    <main class="flex-grow max-w-7xl w-full mx-auto px-4 pt-20 pb-12 space-y-16">
+        
+        <!-- Hero Search Section -->
+        <section class="text-center max-w-3xl mx-auto pt-4">
+            <img src="images/GetAllTix-logo-final-web-lg.png" alt="GetAllTix Logo" class="h-24 w-full max-w-[280px] mx-auto object-contain mb-6">
+            <h1 class="text-4xl md:text-5xl font-extrabold tracking-tight text-gray-950 mb-4">
+                Compare <span class="text-blue-600">All</span> Tickets on One Page
+            </h1>
+            <p class="text-lg text-gray-600 mb-8">
+                Search real-time listings from major secondary markets, teams, and venues with all-in pricing.
+            </p>
+            
+            <form class="relative max-w-2xl mx-auto shadow-lg rounded-full group focus-within:ring-2 focus-within:ring-blue-500 transition-all">
+                <div class="absolute inset-y-0 left-0 flex items-center pl-6 pointer-events-none text-gray-400 group-focus-within:text-blue-600">
+                    <i class="fa-solid fa-magnifying-glass text-xl"></i>
+                </div>
+                <input type="text" placeholder="Search teams, artists, events, or venues..." class="w-full pl-14 pr-36 py-4 md:py-5 rounded-full text-lg border border-gray-200 bg-white focus:outline-none text-gray-900 placeholder-gray-400">
+                <button type="submit" class="absolute right-2 top-2 bottom-2 bg-blue-600 hover:bg-blue-700 text-white font-bold px-6 rounded-full transition text-sm md:text-base">
+                    Find Tickets
+                </button>
+            </form>
+        </section>
+
+        <!-- Suggested Performers / Teams Section -->
+        <section class="space-y-4">
+            <div class="flex justify-between items-center">
+                <h2 class="text-xl font-bold text-gray-900 tracking-tight">Suggested</h2>
+                <div class="flex gap-2">
+                    <button onclick="scrollSuggested(-1)" class="w-8 h-8 rounded-full border border-gray-200 bg-white flex items-center justify-center text-gray-600 hover:bg-gray-50 transition shadow-sm">
+                        <i class="fa-solid fa-chevron-left text-sm"></i>
+                    </button>
+                    <button onclick="scrollSuggested(1)" class="w-8 h-8 rounded-full border border-gray-200 bg-white flex items-center justify-center text-gray-600 hover:bg-gray-50 transition shadow-sm">
+                        <i class="fa-solid fa-chevron-right text-sm"></i>
+                    </button>
+                </div>
+            </div>
+
+            <div id="suggested-container" class="flex gap-4 overflow-x-auto pb-3 no-scrollbar scroll-smooth">
+                <!-- Card 1 -->
+                <a href="#sports" class="flex-shrink-0 w-64 bg-white border border-gray-200 rounded-2xl p-4 flex items-center justify-between hover:border-blue-500 hover:shadow-md transition">
+                    <div class="flex items-center gap-3">
+                        <div class="w-12 h-12 rounded-full bg-blue-50 flex items-center justify-center text-blue-600">
+                            <i class="fa-solid fa-baseball-bat-ball text-xl"></i>
+                        </div>
+                        <div>
+                            <h3 class="font-bold text-gray-900 text-sm truncate w-36">Miami Marlins</h3>
+                            <p class="text-xs text-gray-500">45 Games</p>
+                        </div>
+                    </div>
+                    <i class="fa-solid fa-chevron-right text-gray-300 text-xs"></i>
+                </a>
+                <!-- Card 2 -->
+                <a href="#sports" class="flex-shrink-0 w-64 bg-white border border-gray-200 rounded-2xl p-4 flex items-center justify-between hover:border-blue-500 hover:shadow-md transition">
+                    <div class="flex items-center gap-3">
+                        <div class="w-12 h-12 rounded-full bg-pink-50 flex items-center justify-center text-pink-500">
+                            <i class="fa-solid fa-soccer-ball text-xl"></i>
+                        </div>
+                        <div>
+                            <h3 class="font-bold text-gray-900 text-sm truncate w-36">Inter Miami CF</h3>
+                            <p class="text-xs text-emerald-600 font-medium">Local Team • 14 Games</p>
+                        </div>
+                    </div>
+                    <i class="fa-solid fa-chevron-right text-gray-300 text-xs"></i>
+                </a>
+                <!-- Card 3 -->
+                <a href="#sports" class="flex-shrink-0 w-64 bg-white border border-gray-200 rounded-2xl p-4 flex items-center justify-between hover:border-blue-500 hover:shadow-md transition">
+                    <div class="flex items-center gap-3">
+                        <div class="w-12 h-12 rounded-full bg-red-50 flex items-center justify-center text-red-500">
+                            <i class="fa-solid fa-basketball text-xl"></i>
+                        </div>
+                        <div>
+                            <h3 class="font-bold text-gray-900 text-sm truncate w-36">Miami Heat</h3>
+                            <p class="text-xs text-gray-500">3 Games</p>
+                        </div>
+                    </div>
+                    <i class="fa-solid fa-chevron-right text-gray-300 text-xs"></i>
+                </a>
+                <!-- Card 4 -->
+                <a href="#concerts" class="flex-shrink-0 w-64 bg-white border border-gray-200 rounded-2xl p-4 flex items-center justify-between hover:border-blue-500 hover:shadow-md transition">
+                    <div class="flex items-center gap-3">
+                        <div class="w-12 h-12 rounded-full bg-purple-50 flex items-center justify-center text-purple-600">
+                            <i class="fa-solid fa-music text-xl"></i>
+                        </div>
+                        <div>
+                            <h3 class="font-bold text-gray-900 text-sm truncate w-36">Gracie Abrams</h3>
+                            <p class="text-xs text-purple-600 font-medium">Trending</p>
+                        </div>
+                    </div>
+                    <i class="fa-solid fa-chevron-right text-gray-300 text-xs"></i>
+                </a>
+            </div>
+        </section>
+
+        <!-- Location Customization Bar Container -->
+        <section class="flex justify-center items-center py-2 border-b border-gray-200/60">
+            <div class="inline-flex items-center gap-3 bg-white px-5 py-2.5 rounded-full border border-gray-200 shadow-sm">
+                <div class="flex items-center gap-2 text-gray-900 font-semibold text-sm">
+                    <i class="fa-solid fa-location-dot text-blue-600 text-base"></i>
+                    <span id="current-location-display">Miami, FL</span>
+                </div>
+                <div class="w-px h-4 bg-gray-200"></div>
+                <button onclick="toggleLocationModal(true)" class="text-sm font-bold text-blue-600 hover:text-blue-700 transition tracking-wide px-1">
+                    Edit
+                </button>
+                <button class="bg-blue-600 hover:bg-blue-700 text-white text-xs font-bold px-3 py-1.5 rounded-full transition ml-1">
+                    Explore
+                </button>
+            </div>
+        </section>
+
+        <!-- 1. FIFA World Cup 2026 Section (4-Column Layout) -->
+        <section id="soccer" class="scroll-mt-24 space-y-6">
+            <div>
+                <h2 class="text-2xl font-extrabold text-gray-950 tracking-tight">FIFA World Cup 2026</h2>
+                <p class="text-sm text-gray-500">Secure historical slots to the world's biggest tournament frame</p>
+            </div>
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
+                <!-- WC Card 1 -->
+                <div class="bg-white border border-gray-200 rounded-2xl overflow-hidden shadow-sm flex flex-col hover:border-blue-300 transition duration-300">
+                    <div class="relative w-full pt-[60%] bg-gray-100">
+                        <img src="https://cdn.tickpick.com/images/performers/saudi-arabia-vs-uruguay.jpg" alt="Saudi Arabia vs. Uruguay" class="absolute inset-0 w-full h-full object-cover">
+                    </div>
+                    <div class="p-4 flex-grow space-y-2">
+                        <div class="flex justify-between items-center">
+                            <span class="text-[10px] font-bold uppercase tracking-wider px-2 py-0.5 rounded-full bg-emerald-50 text-emerald-600 border border-emerald-100">Group Stage</span>
+                            <span class="text-xs font-bold text-blue-600">JUN 15</span>
+                        </div>
+                        <h3 class="text-base font-bold text-gray-950 leading-tight line-clamp-2">Saudi Arabia vs. Uruguay</h3>
+                        <p class="text-xs text-gray-500 truncate">Hard Rock Stadium — Miami, FL</p>
+                    </div>
+                    <div class="bg-gray-50 border-t p-3 flex items-center justify-between">
+                        <div>
+                            <span class="block text-[9px] uppercase font-bold text-gray-400">From</span>
+                            <span class="text-base font-black text-gray-950">$335</span>
+                        </div>
+                        <a href="#" class="bg-blue-600 hover:bg-blue-700 text-white text-xs font-bold py-2 px-3 rounded-lg transition">Compare</a>
+                    </div>
+                </div>
+                <!-- WC Card 2 -->
+                <div class="bg-white border border-gray-200 rounded-2xl overflow-hidden shadow-sm flex flex-col hover:border-blue-300 transition duration-300">
+                    <div class="relative w-full pt-[60%] bg-gray-100">
+                        <img src="https://cdn.tickpick.com/images/performers/uruguay-vs-cape-verde.jpg" alt="Uruguay vs. Cape Verde" class="absolute inset-0 w-full h-full object-cover">
+                    </div>
+                    <div class="p-4 flex-grow space-y-2">
+                        <div class="flex justify-between items-center">
+                            <span class="text-[10px] font-bold uppercase tracking-wider px-2 py-0.5 rounded-full bg-emerald-50 text-emerald-600 border border-emerald-100">Group Stage</span>
+                            <span class="text-xs font-bold text-blue-600">JUN 21</span>
+                        </div>
+                        <h3 class="text-base font-bold text-gray-950 leading-tight line-clamp-2">Uruguay vs. Cape Verde</h3>
+                        <p class="text-xs text-gray-500 truncate">Hard Rock Stadium — Miami, FL</p>
+                    </div>
+                    <div class="bg-gray-50 border-t p-3 flex items-center justify-between">
+                        <div>
+                            <span class="block text-[9px] uppercase font-bold text-gray-400">From</span>
+                            <span class="text-base font-black text-gray-950">$330</span>
+                        </div>
+                        <a href="#" class="bg-blue-600 hover:bg-blue-700 text-white text-xs font-bold py-2 px-3 rounded-lg transition">Compare</a>
+                    </div>
+                </div>
+                <!-- WC Card 3 -->
+                <div class="bg-white border border-gray-200 rounded-2xl overflow-hidden shadow-sm flex flex-col hover:border-blue-300 transition duration-300">
+                    <div class="relative w-full pt-[60%] bg-gray-100">
+                        <img src="https://cdn.tickpick.com/images/performers/scotland-vs-brazil.jpg" alt="Scotland vs. Brazil" class="absolute inset-0 w-full h-full object-cover">
+                    </div>
+                    <div class="p-4 flex-grow space-y-2">
+                        <div class="flex justify-between items-center">
+                            <span class="text-[10px] font-bold uppercase tracking-wider px-2 py-0.5 rounded-full bg-emerald-50 text-emerald-600 border border-emerald-100">Marquee Match</span>
+                            <span class="text-xs font-bold text-blue-600">JUN 24</span>
+                        </div>
+                        <h3 class="text-base font-bold text-gray-950 leading-tight line-clamp-2">Scotland vs. Brazil</h3>
+                        <p class="text-xs text-gray-500 truncate">MetLife Stadium — East Rutherford, NJ</p>
+                    </div>
+                    <div class="bg-gray-50 border-t p-3 flex items-center justify-between">
+                        <div>
+                            <span class="block text-[9px] uppercase font-bold text-gray-400">From</span>
+                            <span class="text-base font-black text-gray-950">$1,675</span>
+                        </div>
+                        <a href="#" class="bg-blue-600 hover:bg-blue-700 text-white text-xs font-bold py-2 px-3 rounded-lg transition">Compare</a>
+                    </div>
+                </div>
+                <!-- WC Card 4 -->
+                <div class="bg-white border border-gray-200 rounded-2xl overflow-hidden shadow-sm flex flex-col hover:border-blue-300 transition duration-300">
+                    <div class="relative w-full pt-[60%] bg-gray-100">
+                        <img src="https://cdn.tickpick.com/images/performers/colombia-vs-portugal.jpg" alt="Colombia vs. Portugal" class="absolute inset-0 w-full h-full object-cover">
+                    </div>
+                    <div class="p-4 flex-grow space-y-2">
+                        <div class="flex justify-between items-center">
+                            <span class="text-[10px] font-bold uppercase tracking-wider px-2 py-0.5 rounded-full bg-emerald-50 text-emerald-600 border border-emerald-100">Group Stage</span>
+                            <span class="text-xs font-bold text-blue-600">JUN 27</span>
+                        </div>
+                        <h3 class="text-base font-bold text-gray-950 leading-tight line-clamp-2">Colombia vs. Portugal</h3>
+                        <p class="text-xs text-gray-500 truncate">Hard Rock Stadium — Miami, FL</p>
+                    </div>
+                    <div class="bg-gray-50 border-t p-3 flex items-center justify-between">
+                        <div>
+                            <span class="block text-[9px] uppercase font-bold text-gray-400">From</span>
+                            <span class="text-base font-black text-gray-950">$2,741</span>
+                        </div>
+                        <a href="#" class="bg-blue-600 hover:bg-blue-700 text-white text-xs font-bold py-2 px-3 rounded-lg transition">Compare</a>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- 2. Sports Section (4-Column Layout) -->
+        <section id="sports" class="space-y-6 scroll-mt-24">
+            <div>
+                <h2 class="text-2xl font-extrabold text-gray-950 tracking-tight">Sports</h2>
+                <p class="text-sm text-gray-500">Catch live league regular and post-season games</p>
+            </div>
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
+                <!-- Sports Card 1 -->
+                <div class="bg-white border border-gray-200 rounded-2xl overflow-hidden shadow-sm flex flex-col hover:border-blue-300 transition duration-300">
+                    <div class="relative w-full pt-[60%] bg-gray-100">
+                        <img src="https://cdn.tickpick.com/images/performers/miami-marlins.jpg" alt="Miami Marlins" class="absolute inset-0 w-full h-full object-cover">
+                    </div>
+                    <div class="p-4 flex-grow space-y-2">
+                        <div class="flex justify-between items-center">
+                            <span class="text-[10px] font-bold uppercase tracking-wider px-2 py-0.5 rounded-full bg-blue-50 text-blue-600 border border-blue-100">MLB Baseball</span>
+                            <span class="text-xs font-semibold text-gray-400">45 Games</span>
+                        </div>
+                        <h3 class="text-base font-bold text-gray-950 leading-tight line-clamp-2">Miami Marlins Season Passes</h3>
+                        <p class="text-xs text-gray-500 truncate">LoanDepot Park — Miami, FL</p>
+                    </div>
+                    <div class="bg-gray-50 border-t p-3 flex items-center justify-between">
+                        <div>
+                            <span class="block text-[9px] uppercase font-bold text-gray-400">From</span>
+                            <span class="text-base font-black text-gray-950">$18</span>
+                        </div>
+                        <a href="#" class="bg-blue-600 hover:bg-blue-700 text-white text-xs font-bold py-2 px-3 rounded-lg transition">View Games</a>
+                    </div>
+                </div>
+                <!-- Sports Card 2 -->
+                <div class="bg-white border border-gray-200 rounded-2xl overflow-hidden shadow-sm flex flex-col hover:border-blue-300 transition duration-300">
+                    <div class="relative w-full pt-[60%] bg-gray-100">
+                        <img src="https://cdn.tickpick.com/images/performers/miami-dolphins.jpg" alt="Miami Dolphins" class="absolute inset-0 w-full h-full object-cover">
+                    </div>
+                    <div class="p-4 flex-grow space-y-2">
+                        <div class="flex justify-between items-center">
+                            <span class="text-[10px] font-bold uppercase tracking-wider px-2 py-0.5 rounded-full bg-orange-50 text-orange-600 border border-orange-100">NFL Football</span>
+                            <span class="text-xs font-bold text-blue-600">NOV 08</span>
+                        </div>
+                        <h3 class="text-base font-bold text-gray-950 leading-tight line-clamp-2">Miami Dolphins vs. Detroit Lions</h3>
+                        <p class="text-xs text-gray-500 truncate">Hard Rock Stadium — Miami, FL</p>
+                    </div>
+                    <div class="bg-gray-50 border-t p-3 flex items-center justify-between">
+                        <div>
+                            <span class="block text-[9px] uppercase font-bold text-gray-400">From</span>
+                            <span class="text-base font-black text-gray-950">$106</span>
+                        </div>
+                        <a href="#" class="bg-blue-600 hover:bg-blue-700 text-white text-xs font-bold py-2 px-3 rounded-lg transition">Compare</a>
+                    </div>
+                </div>
+                <!-- Sports Card 3 -->
+                <div class="bg-white border border-gray-200 rounded-2xl overflow-hidden shadow-sm flex flex-col hover:border-blue-300 transition duration-300">
+                    <div class="relative w-full pt-[60%] bg-gray-100">
+                        <img src="https://cdn.tickpick.com/images/performers/miami-heat.jpg" alt="Miami Heat" class="absolute inset-0 w-full h-full object-cover">
+                    </div>
+                    <div class="p-4 flex-grow space-y-2">
+                        <div class="flex justify-between items-center">
+                            <span class="text-[10px] font-bold uppercase tracking-wider px-2 py-0.5 rounded-full bg-red-50 text-red-600 border border-red-100">NBA Basketball</span>
+                            <span class="text-xs font-semibold text-gray-400">3 Games</span>
+                        </div>
+                        <h3 class="text-base font-bold text-gray-950 leading-tight line-clamp-2">Miami Heat Playoff Series</h3>
+                        <p class="text-xs text-gray-500 truncate">Kaseya Center — Miami, FL</p>
+                    </div>
+                    <div class="bg-gray-50 border-t p-3 flex items-center justify-between">
+                        <div>
+                            <span class="block text-[9px] uppercase font-bold text-gray-400">From</span>
+                            <span class="text-base font-black text-gray-950">$89</span>
+                        </div>
+                        <a href="#" class="bg-blue-600 hover:bg-blue-700 text-white text-xs font-bold py-2 px-3 rounded-lg transition">Compare</a>
+                    </div>
+                </div>
+                <!-- Sports Card 4 -->
+                <div class="bg-white border border-gray-200 rounded-2xl overflow-hidden shadow-sm flex flex-col hover:border-blue-300 transition duration-300">
+                    <div class="relative w-full pt-[60%] bg-gray-100">
+                        <img src="https://cdn.tickpick.com/images/performers/inter-miami-cf.jpg" alt="Inter Miami CF" class="absolute inset-0 w-full h-full object-cover">
+                    </div>
+                    <div class="p-4 flex-grow space-y-2">
+                        <div class="flex justify-between items-center">
+                            <span class="text-[10px] font-bold uppercase tracking-wider px-2 py-0.5 rounded-full bg-pink-50 text-pink-600 border border-pink-100">MLS Soccer</span>
+                            <span class="text-xs font-semibold text-emerald-600">Local Team</span>
+                        </div>
+                        <h3 class="text-base font-bold text-gray-950 leading-tight line-clamp-2">Inter Miami CF Home Matches</h3>
+                        <p class="text-xs text-gray-500 truncate">Chase Stadium — Fort Lauderdale, FL</p>
+                    </div>
+                    <div class="bg-gray-50 border-t p-3 flex items-center justify-between">
+                        <div>
+                            <span class="block text-[9px] uppercase font-bold text-gray-400">From</span>
+                            <span class="text-base font-black text-gray-950">$74</span>
+                        </div>
+                        <a href="#" class="bg-blue-600 hover:bg-blue-700 text-white text-xs font-bold py-2 px-3 rounded-lg transition">View Games</a>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- 3. Concerts Section (4-Column Layout) -->
+        <section id="concerts" class="space-y-6 scroll-mt-24">
+            <div>
+                <h2 class="text-2xl font-extrabold text-gray-950 tracking-tight">Concerts</h2>
+                <p class="text-sm text-gray-500">Live arena dates and global stadium tour tracking rosters</p>
+            </div>
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
+                <!-- Concert Card 1 -->
+                <div class="bg-white border border-gray-200 rounded-2xl overflow-hidden shadow-sm flex flex-col hover:border-blue-300 transition duration-300">
+                    <div class="relative w-full pt-[60%] bg-gray-100">
+                        <img src="https://cdn.tickpick.com/images/performers/ariana-grande.jpg" alt="Ariana Grande" class="absolute inset-0 w-full h-full object-cover">
+                    </div>
+                    <div class="p-4 flex-grow space-y-2">
+                        <div class="flex justify-between items-center">
+                            <span class="text-[10px] font-bold uppercase tracking-wider px-2 py-0.5 rounded-full bg-purple-50 text-purple-600 border border-purple-100">Pop / R&B</span>
+                            <span class="text-xs font-bold text-blue-600">JUN 30</span>
+                        </div>
+                        <h3 class="text-base font-bold text-gray-950 leading-tight line-clamp-2">Ariana Grande</h3>
+                        <p class="text-xs text-gray-500 truncate">Kaseya Center — Miami, FL</p>
+                    </div>
+                    <div class="bg-gray-50 border-t p-3 flex items-center justify-between">
+                        <div>
+                            <span class="block text-[9px] uppercase font-bold text-gray-400">From</span>
+                            <span class="text-base font-black text-gray-950">$501</span>
+                        </div>
+                        <a href="#" class="bg-blue-600 hover:bg-blue-700 text-white text-xs font-bold py-2 px-3 rounded-lg transition">Compare</a>
+                    </div>
+                </div>
+                <!-- Concert Card 2 -->
+                <div class="bg-white border border-gray-200 rounded-2xl overflow-hidden shadow-sm flex flex-col hover:border-blue-300 transition duration-300">
+                    <div class="relative w-full pt-[60%] bg-gray-100">
+                        <img src="https://cdn.tickpick.com/images/performers/bruno-mars-raye-dj-pee-wee.jpg" alt="Bruno Mars" class="absolute inset-0 w-full h-full object-cover">
+                    </div>
+                    <div class="p-4 flex-grow space-y-2">
+                        <div class="flex justify-between items-center">
+                            <span class="text-[10px] font-bold uppercase tracking-wider px-2 py-0.5 rounded-full bg-purple-50 text-purple-600 border border-purple-100">Festival</span>
+                            <span class="text-xs font-bold text-blue-600">SEP 19</span>
+                        </div>
+                        <h3 class="text-base font-bold text-gray-950 leading-tight line-clamp-2">Bruno Mars, Raye & DJ Pee.Wee</h3>
+                        <p class="text-xs text-gray-500 truncate">Soundstage Ground — Miami, FL</p>
+                    </div>
+                    <div class="bg-gray-50 border-t p-3 flex items-center justify-between">
+                        <div>
+                            <span class="block text-[9px] uppercase font-bold text-gray-400">From</span>
+                            <span class="text-base font-black text-gray-950">$250</span>
+                        </div>
+                        <a href="#" class="bg-blue-600 hover:bg-blue-700 text-white text-xs font-bold py-2 px-3 rounded-lg transition">Compare</a>
+                    </div>
+                </div>
+                <!-- Concert Card 3 -->
+                <div class="bg-white border border-gray-200 rounded-2xl overflow-hidden shadow-sm flex flex-col hover:border-blue-300 transition duration-300">
+                    <div class="relative w-full pt-[60%] bg-gray-100">
+                        <img src="https://cdn.tickpick.com/images/performers/usher.jpg" alt="Usher" class="absolute inset-0 w-full h-full object-cover">
+                    </div>
+                    <div class="p-4 flex-grow space-y-2">
+                        <div class="flex justify-between items-center">
+                            <span class="text-[10px] font-bold uppercase tracking-wider px-2 py-0.5 rounded-full bg-purple-50 text-purple-600 border border-purple-100">Hip Hop / Pop</span>
+                            <span class="text-xs font-bold text-blue-600">DEC 03</span>
+                        </div>
+                        <h3 class="text-base font-bold text-gray-950 leading-tight line-clamp-2">Usher & Chris Brown</h3>
+                        <p class="text-xs text-gray-500 truncate">Hard Rock Stadium — Miami, FL</p>
+                    </div>
+                    <div class="bg-gray-50 border-t p-3 flex items-center justify-between">
+                        <div>
+                            <span class="block text-[9px] uppercase font-bold text-gray-400">From</span>
+                            <span class="text-base font-black text-gray-950">$141</span>
+                        </div>
+                        <a href="#" class="bg-blue-600 hover:bg-blue-700 text-white text-xs font-bold py-2 px-3 rounded-lg transition">Compare</a>
+                    </div>
+                </div>
+                <!-- Concert Card 4 -->
+                <div class="bg-white border border-gray-200 rounded-2xl overflow-hidden shadow-sm flex flex-col hover:border-blue-300 transition duration-300">
+                    <div class="relative w-full pt-[60%] bg-gray-100">
+                        <img src="https://cdn.tickpick.com/images/performers/gracie-abrams.jpg" alt="Gracie Abrams" class="absolute inset-0 w-full h-full object-cover">
+                    </div>
+                    <div class="p-4 flex-grow space-y-2">
+                        <div class="flex justify-between items-center">
+                            <span class="text-[10px] font-bold uppercase tracking-wider px-2 py-0.5 rounded-full bg-purple-50 text-purple-600 border border-purple-100">Indie Pop</span>
+                            <span class="text-xs font-semibold text-purple-600">Trending</span>
+                        </div>
+                        <h3 class="text-base font-bold text-gray-950 leading-tight line-clamp-2">Gracie Abrams: Secret of Us Tour</h3>
+                        <p class="text-xs text-gray-500 truncate">Fillmore Miami Beach — Miami, FL</p>
+                    </div>
+                    <div class="bg-gray-50 border-t p-3 flex items-center justify-between">
+                        <div>
+                            <span class="block text-[9px] uppercase font-bold text-gray-400">From</span>
+                            <span class="text-base font-black text-gray-950">$115</span>
+                        </div>
+                        <a href="#" class="bg-blue-600 hover:bg-blue-700 text-white text-xs font-bold py-2 px-3 rounded-lg transition">Compare</a>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- 4. Theater Section (4-Column Layout) -->
+        <section id="theater" class="space-y-6 scroll-mt-24">
+            <div>
+                <h2 class="text-2xl font-extrabold text-gray-950 tracking-tight">Theater</h2>
+                <p class="text-sm text-gray-500">Broadway distributions, local musicals, and classic show arrays</p>
+            </div>
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
+                <!-- Theater Card 1 -->
+                <div class="bg-white border border-gray-200 rounded-2xl overflow-hidden shadow-sm flex flex-col hover:border-blue-300 transition duration-300">
+                    <div class="relative w-full pt-[60%] bg-gray-100">
+                        <img src="https://cdn.tickpick.com/images/performers/the-book-of-mormon.jpg" alt="The Book Of Mormon" class="absolute inset-0 w-full h-full object-cover">
+                    </div>
+                    <div class="p-4 flex-grow space-y-2">
+                        <div class="flex justify-between items-center">
+                            <span class="text-[10px] font-bold uppercase tracking-wider px-2 py-0.5 rounded-full bg-pink-50 text-pink-600 border border-pink-100">Musical</span>
+                            <span class="text-xs font-semibold text-gray-400">8 Shows</span>
+                        </div>
+                        <h3 class="text-base font-bold text-gray-950 leading-tight line-clamp-2">The Book Of Mormon</h3>
+                        <p class="text-xs text-gray-500 truncate">Ziff Ballet Opera House — Miami, FL</p>
+                    </div>
+                    <div class="bg-gray-50 border-t p-3 flex items-center justify-between">
+                        <div>
+                            <span class="block text-[9px] uppercase font-bold text-gray-400">From</span>
+                            <span class="text-base font-black text-gray-950">$64</span>
+                        </div>
+                        <a href="#" class="bg-blue-600 hover:bg-blue-700 text-white text-xs font-bold py-2 px-3 rounded-lg transition">Tickets</a>
+                    </div>
+                </div>
+                <!-- Theater Card 2 -->
+                <div class="bg-white border border-gray-200 rounded-2xl overflow-hidden shadow-sm flex flex-col hover:border-blue-300 transition duration-300">
+                    <div class="relative w-full pt-[60%] bg-gray-100">
+                        <img src="https://cdn.tickpick.com/images/performers/blue-man-group.jpg" alt="Blue Man Group" class="absolute inset-0 w-full h-full object-cover">
+                    </div>
+                    <div class="p-4 flex-grow space-y-2">
+                        <div class="flex justify-between items-center">
+                            <span class="text-[10px] font-bold uppercase tracking-wider px-2 py-0.5 rounded-full bg-pink-50 text-pink-600 border border-pink-100">Production</span>
+                            <span class="text-xs font-semibold text-gray-400">6 Shows</span>
+                        </div>
+                        <h3 class="text-base font-bold text-gray-950 leading-tight line-clamp-2">Blue Man Group</h3>
+                        <p class="text-xs text-gray-500 truncate">Charles Playhouse — Boston, MA</p>
+                    </div>
+                    <div class="bg-gray-50 border-t p-3 flex items-center justify-between">
+                        <div>
+                            <span class="block text-[9px] uppercase font-bold text-gray-400">From</span>
+                            <span class="text-base font-black text-gray-950">$55</span>
+                        </div>
+                        <a href="#" class="bg-blue-600 hover:bg-blue-700 text-white text-xs font-bold py-2 px-3 rounded-lg transition">Tickets</a>
+                    </div>
+                </div>
+                <!-- Theater Card 3 -->
+                <div class="bg-white border border-gray-200 rounded-2xl overflow-hidden shadow-sm flex flex-col hover:border-blue-300 transition duration-300">
+                    <div class="relative w-full pt-[60%] bg-gray-100">
+                        <img src="https://cdn.tickpick.com/images/performers/hamilton.jpg" alt="Hamilton" class="absolute inset-0 w-full h-full object-cover">
+                    </div>
+                    <div class="p-4 flex-grow space-y-2">
+                        <div class="flex justify-between items-center">
+                            <span class="text-[10px] font-bold uppercase tracking-wider px-2 py-0.5 rounded-full bg-pink-50 text-pink-600 border border-pink-100">Broadway Hit</span>
+                            <span class="text-xs font-semibold text-gray-400">16 Shows</span>
+                        </div>
+                        <h3 class="text-base font-bold text-gray-950 leading-tight line-clamp-2">Hamilton</h3>
+                        <p class="text-xs text-gray-500 truncate">Richard Rodgers Theatre — New York, NY</p>
+                    </div>
+                    <div class="bg-gray-50 border-t p-3 flex items-center justify-between">
+                        <div>
+                            <span class="block text-[9px] uppercase font-bold text-gray-400">From</span>
+                            <span class="text-base font-black text-gray-950">$142</span>
+                        </div>
+                        <a href="#" class="bg-blue-600 hover:bg-blue-700 text-white text-xs font-bold py-2 px-3 rounded-lg transition">Tickets</a>
+                    </div>
+                </div>
+                <!-- Theater Card 4 -->
+                <div class="bg-white border border-gray-200 rounded-2xl overflow-hidden shadow-sm flex flex-col hover:border-blue-300 transition duration-300">
+                    <div class="relative w-full pt-[60%] bg-gray-100">
+                        <img src="https://cdn.tickpick.com/images/performers/buena-vista-social-club-musical.jpg" alt="Buena Vista Social Club" class="absolute inset-0 w-full h-full object-cover">
+                    </div>
+                    <div class="p-4 flex-grow space-y-2">
+                        <div class="flex justify-between items-center">
+                            <span class="text-[10px] font-bold uppercase tracking-wider px-2 py-0.5 rounded-full bg-pink-50 text-pink-600 border border-pink-100">New Musical</span>
+                            <span class="text-xs font-semibold text-gray-400">16 Shows</span>
+                        </div>
+                        <h3 class="text-base font-bold text-gray-950 leading-tight line-clamp-2">Buena Vista Social Club - Musical</h3>
+                        <p class="text-xs text-gray-500 truncate">Atlantic Theater Company — New York, NY</p>
+                    </div>
+                    <div class="bg-gray-50 border-t p-3 flex items-center justify-between">
+                        <div>
+                            <span class="block text-[9px] uppercase font-bold text-gray-400">From</span>
+                            <span class="text-base font-black text-gray-950">$95</span>
+                        </div>
+                        <a href="#" class="bg-blue-600 hover:bg-blue-700 text-white text-xs font-bold py-2 px-3 rounded-lg transition">Tickets</a>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- 5. Trending Performers Section (Updated to 12 Cards: 3 Rows of 4 Columns) -->
+        <section id="trending" class="space-y-6 scroll-mt-24">
+            <div>
+                <h2 class="text-2xl font-extrabold text-gray-950 tracking-tight">Trending Performers</h2>
+                <p class="text-sm text-gray-500">Top metrics high-volume artists and acts nationwide</p>
+            </div>
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
+                
+                <!-- Rank #1 -->
+                <div class="bg-white border border-gray-200 rounded-2xl overflow-hidden shadow-sm flex flex-col hover:border-blue-300 transition duration-300">
+                    <div class="relative w-full pt-[60%] bg-gray-100">
+                        <img src="https://cdn.tickpick.com/images/performers/gracie-abrams.jpg" alt="Gracie Abrams" class="absolute inset-0 w-full h-full object-cover">
+                        <span class="absolute top-2 left-2 bg-blue-600 text-white text-xs font-black px-2.5 py-1 rounded-lg shadow-md">#1</span>
+                    </div>
+                    <div class="p-4 flex-grow space-y-2">
+                        <h3 class="text-base font-bold text-gray-950 leading-tight line-clamp-1">Gracie Abrams</h3>
+                        <p class="text-xs text-gray-500">Pop / Indie Arena Circuit</p>
+                    </div>
+                    <div class="bg-gray-50 border-t p-3">
+                        <a href="#" class="block w-full text-center bg-blue-600 hover:bg-blue-700 text-white text-xs font-bold py-2 px-3 rounded-lg transition">Find Event Tickets</a>
+                    </div>
+                </div>
+
+                <!-- Rank #2 -->
+                <div class="bg-white border border-gray-200 rounded-2xl overflow-hidden shadow-sm flex flex-col hover:border-blue-300 transition duration-300">
+                    <div class="relative w-full pt-[60%] bg-gray-100">
+                        <img src="https://cdn.tickpick.com/images/performers/don-toliver.jpg" alt="Don Toliver" class="absolute inset-0 w-full h-full object-cover">
+                        <span class="absolute top-2 left-2 bg-blue-600 text-white text-xs font-black px-2.5 py-1 rounded-lg shadow-md">#2</span>
+                    </div>
+                    <div class="p-4 flex-grow space-y-2">
+                        <h3 class="text-base font-bold text-gray-950 leading-tight line-clamp-1">Don Toliver</h3>
+                        <p class="text-xs text-gray-500">Rap / Hip-Hop Stage Tour</p>
+                    </div>
+                    <div class="bg-gray-50 border-t p-3">
+                        <a href="#" class="block w-full text-center bg-blue-600 hover:bg-blue-700 text-white text-xs font-bold py-2 px-3 rounded-lg transition">Find Event Tickets</a>
+                    </div>
+                </div>
+
+                <!-- Rank #3 -->
+                <div class="bg-white border border-gray-200 rounded-2xl overflow-hidden shadow-sm flex flex-col hover:border-blue-300 transition duration-300">
+                    <div class="relative w-full pt-[60%] bg-gray-100">
+                        <img src="https://cdn.tickpick.com/images/performers/asap-rocky.jpg" alt="A$AP Rocky" class="absolute inset-0 w-full h-full object-cover">
+                        <span class="absolute top-2 left-2 bg-blue-600 text-white text-xs font-black px-2.5 py-1 rounded-lg shadow-md">#3</span>
+                    </div>
+                    <div class="p-4 flex-grow space-y-2">
+                        <h3 class="text-base font-bold text-gray-950 leading-tight line-clamp-1">A$AP Rocky</h3>
+                        <p class="text-xs text-gray-500">Hip-Hop / Festival Headliner</p>
+                    </div>
+                    <div class="bg-gray-50 border-t p-3">
+                        <a href="#" class="block w-full text-center bg-blue-600 hover:bg-blue-700 text-white text-xs font-bold py-2 px-3 rounded-lg transition">Find Event Tickets</a>
+                    </div>
+                </div>
+
+                <!-- Rank #4 -->
+                <div class="bg-white border border-gray-200 rounded-2xl overflow-hidden shadow-sm flex flex-col hover:border-blue-300 transition duration-300">
+                    <div class="relative w-full pt-[60%] bg-gray-100">
+                        <img src="https://cdn.tickpick.com/images/performers/machine-gun-kelly.jpg" alt="Machine Gun Kelly" class="absolute inset-0 w-full h-full object-cover">
+                        <span class="absolute top-2 left-2 bg-blue-600 text-white text-xs font-black px-2.5 py-1 rounded-lg shadow-md">#4</span>
+                    </div>
+                    <div class="p-4 flex-grow space-y-2">
+                        <h3 class="text-base font-bold text-gray-950 leading-tight line-clamp-1">Machine Gun Kelly</h3>
+                        <p class="text-xs text-gray-500">Alternative Rock / Pop Punk</p>
+                    </div>
+                    <div class="bg-gray-50 border-t p-3">
+                        <a href="#" class="block w-full text-center bg-blue-600 hover:bg-blue-700 text-white text-xs font-bold py-2 px-3 rounded-lg transition">Find Event Tickets</a>
+                    </div>
+                </div>
+
+                <!-- Rank #5 -->
+                <div class="bg-white border border-gray-200 rounded-2xl overflow-hidden shadow-sm flex flex-col hover:border-blue-300 transition duration-300">
+                    <div class="relative w-full pt-[60%] bg-gray-100">
+                        <img src="https://cdn.tickpick.com/images/performers/bryson-tiller.jpg" alt="Bryson Tiller" class="absolute inset-0 w-full h-full object-cover">
+                        <span class="absolute top-2 left-2 bg-blue-600 text-white text-xs font-black px-2.5 py-1 rounded-lg shadow-md">#5</span>
+                    </div>
+                    <div class="p-4 flex-grow space-y-2">
+                        <h3 class="text-base font-bold text-gray-950 leading-tight line-clamp-1">Bryson Tiller</h3>
+                        <p class="text-xs text-gray-500">Contemporary R&B / Soul</p>
+                    </div>
+                    <div class="bg-gray-50 border-t p-3">
+                        <a href="#" class="block w-full text-center bg-blue-600 hover:bg-blue-700 text-white text-xs font-bold py-2 px-3 rounded-lg transition">Find Event Tickets</a>
+                    </div>
+                </div>
+
+                <!-- Rank #6 -->
+                <div class="bg-white border border-gray-200 rounded-2xl overflow-hidden shadow-sm flex flex-col hover:border-blue-300 transition duration-300">
+                    <div class="relative w-full pt-[60%] bg-gray-100">
+                        <img src="https://cdn.tickpick.com/images/performers/megan-moroney.jpg" alt="Megan Moroney" class="absolute inset-0 w-full h-full object-cover">
+                        <span class="absolute top-2 left-2 bg-blue-600 text-white text-xs font-black px-2.5 py-1 rounded-lg shadow-md">#6</span>
+                    </div>
+                    <div class="p-4 flex-grow space-y-2">
+                        <h3 class="text-base font-bold text-gray-950 leading-tight line-clamp-1">Megan Moroney</h3>
+                        <p class="text-xs text-gray-500">Country / Pop Outlets</p>
+                    </div>
+                    <div class="bg-gray-50 border-t p-3">
+                        <a href="#" class="block w-full text-center bg-blue-600 hover:bg-blue-700 text-white text-xs font-bold py-2 px-3 rounded-lg transition">Find Event Tickets</a>
+                    </div>
+                </div>
+
+                <!-- Rank #7 -->
+                <div class="bg-white border border-gray-200 rounded-2xl overflow-hidden shadow-sm flex flex-col hover:border-blue-300 transition duration-300">
+                    <div class="relative w-full pt-[60%] bg-gray-100">
+                        <img src="https://cdn.tickpick.com/images/performers/ariana-grande.jpg" alt="Ariana Grande" class="absolute inset-0 w-full h-full object-cover">
+                        <span class="absolute top-2 left-2 bg-blue-600 text-white text-xs font-black px-2.5 py-1 rounded-lg shadow-md">#7</span>
+                    </div>
+                    <div class="p-4 flex-grow space-y-2">
+                        <h3 class="text-base font-bold text-gray-950 leading-tight line-clamp-1">Ariana Grande</h3>
+                        <p class="text-xs text-gray-500">Mainstage Pop Arena Run</p>
+                    </div>
+                    <div class="bg-gray-50 border-t p-3">
+                        <a href="#" class="block w-full text-center bg-blue-600 hover:bg-blue-700 text-white text-xs font-bold py-2 px-3 rounded-lg transition">Find Event Tickets</a>
+                    </div>
+                </div>
+
+                <!-- Rank #8 -->
+                <div class="bg-white border border-gray-200 rounded-2xl overflow-hidden shadow-sm flex flex-col hover:border-blue-300 transition duration-300">
+                    <div class="relative w-full pt-[60%] bg-gray-100">
+                        <img src="https://cdn.tickpick.com/images/performers/usher.jpg" alt="Usher" class="absolute inset-0 w-full h-full object-cover">
+                        <span class="absolute top-2 left-2 bg-blue-600 text-white text-xs font-black px-2.5 py-1 rounded-lg shadow-md">#8</span>
+                    </div>
+                    <div class="p-4 flex-grow space-y-2">
+                        <h3 class="text-base font-bold text-gray-950 leading-tight line-clamp-1">Usher</h3>
+                        <p class="text-xs text-gray-500">R&B / Las Vegas Showmanship</p>
+                    </div>
+                    <div class="bg-gray-50 border-t p-3">
+                        <a href="#" class="block w-full text-center bg-blue-600 hover:bg-blue-700 text-white text-xs font-bold py-2 px-3 rounded-lg transition">Find Event Tickets</a>
+                    </div>
+                </div>
+
+                <!-- Rank #9 -->
+                <div class="bg-white border border-gray-200 rounded-2xl overflow-hidden shadow-sm flex flex-col hover:border-blue-300 transition duration-300">
+                    <div class="relative w-full pt-[60%] bg-gray-100">
+                        <img src="https://cdn.tickpick.com/images/performers/matt-rife.jpg" alt="Matt Rife" class="absolute inset-0 w-full h-full object-cover">
+                        <span class="absolute top-2 left-2 bg-blue-600 text-white text-xs font-black px-2.5 py-1 rounded-lg shadow-md">#9</span>
+                    </div>
+                    <div class="p-4 flex-grow space-y-2">
+                        <h3 class="text-base font-bold text-gray-950 leading-tight line-clamp-1">Matt Rife</h3>
+                        <p class="text-xs text-gray-500">Live Comedy Stand-Up Tour</p>
+                    </div>
+                    <div class="bg-gray-50 border-t p-3">
+                        <a href="#" class="block w-full text-center bg-blue-600 hover:bg-blue-700 text-white text-xs font-bold py-2 px-3 rounded-lg transition">Find Event Tickets</a>
+                    </div>
+                </div>
+
+                <!-- Rank #10 -->
+                <div class="bg-white border border-gray-200 rounded-2xl overflow-hidden shadow-sm flex flex-col hover:border-blue-300 transition duration-300">
+                    <div class="relative w-full pt-[60%] bg-gray-100">
+                        <img src="https://cdn.tickpick.com/images/performers/shakira.jpg" alt="Shakira" class="absolute inset-0 w-full h-full object-cover">
+                        <span class="absolute top-2 left-2 bg-blue-600 text-white text-xs font-black px-2.5 py-1 rounded-lg shadow-md">#10</span>
+                    </div>
+                    <div class="p-4 flex-grow space-y-2">
+                        <h3 class="text-base font-bold text-gray-950 leading-tight line-clamp-1">Shakira</h3>
+                        <p class="text-xs text-gray-500">Global Latin Pop Stadiums</p>
+                    </div>
+                    <div class="bg-gray-50 border-t p-3">
+                        <a href="#" class="block w-full text-center bg-blue-600 hover:bg-blue-700 text-white text-xs font-bold py-2 px-3 rounded-lg transition">Find Event Tickets</a>
+                    </div>
+                </div>
+
+                <!-- Rank #11 -->
+                <div class="bg-white border border-gray-200 rounded-2xl overflow-hidden shadow-sm flex flex-col hover:border-blue-300 transition duration-300">
+                    <div class="relative w-full pt-[60%] bg-gray-100">
+                        <img src="https://cdn.tickpick.com/images/performers/carin-leon.jpg" alt="Carin León" class="absolute inset-0 w-full h-full object-cover">
+                        <span class="absolute top-2 left-2 bg-blue-600 text-white text-xs font-black px-2.5 py-1 rounded-lg shadow-md">#11</span>
+                    </div>
+                    <div class="p-4 flex-grow space-y-2">
+                        <h3 class="text-base font-bold text-gray-950 leading-tight line-clamp-1">Carin León</h3>
+                        <p class="text-xs text-gray-500">Regional Mexican / Música</p>
+                    </div>
+                    <div class="bg-gray-50 border-t p-3">
+                        <a href="#" class="block w-full text-center bg-blue-600 hover:bg-blue-700 text-white text-xs font-bold py-2 px-3 rounded-lg transition">Find Event Tickets</a>
+                    </div>
+                </div>
+
+                <!-- Rank #12 -->
+                <div class="bg-white border border-gray-200 rounded-2xl overflow-hidden shadow-sm flex flex-col hover:border-blue-300 transition duration-300">
+                    <div class="relative w-full pt-[60%] bg-gray-100">
+                        <img src="https://cdn.tickpick.com/images/performers/j-cole.jpg" alt="J. Cole" class="absolute inset-0 w-full h-full object-cover">
+                        <span class="absolute top-2 left-2 bg-blue-600 text-white text-xs font-black px-2.5 py-1 rounded-lg shadow-md">#12</span>
+                    </div>
+                    <div class="p-4 flex-grow space-y-2">
+                        <h3 class="text-base font-bold text-gray-950 leading-tight line-clamp-1">J. Cole</h3>
+                        <p class="text-xs text-gray-500">Hip-Hop / Lyricism Arena Run</p>
+                    </div>
+                    <div class="bg-gray-50 border-t p-3">
+                        <a href="#" class="block w-full text-center bg-blue-600 hover:bg-blue-700 text-white text-xs font-bold py-2 px-3 rounded-lg transition">Find Event Tickets</a>
+                    </div>
+                </div>
+
+            </div>
+        </section>
+
+        <!-- Partner & Vendor Layout Grid -->
+        <section class="bg-white border border-gray-100 rounded-3xl p-8 md:p-12 shadow-sm">
+            <div class="text-center mb-8">
+                <h2 class="text-xs uppercase tracking-widest font-bold text-gray-400">Aggregating Direct & Marketplace Inventory From</h2>
+            </div>
+            <div class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-6 gap-8 items-center justify-items-center opacity-75 hover:opacity-100 transition-opacity duration-300">
+                <div class="h-12 w-full max-w-[140px] flex items-center justify-center p-2 bg-gray-50 rounded-xl border border-gray-100">
+                    <img src="images/partners/ticketmaster.png" alt="Ticketmaster" class="max-h-full max-w-full object-contain grayscale hover:grayscale-0 transition">
+                </div>
+                <div class="h-12 w-full max-w-[140px] flex items-center justify-center p-2 bg-gray-50 rounded-xl border border-gray-100">
+                    <img src="images/partners/stubhub.png" alt="StubHub" class="max-h-full max-w-full object-contain grayscale hover:grayscale-0 transition">
+                </div>
+                <div class="h-12 w-full max-w-[140px] flex items-center justify-center p-2 bg-gray-50 rounded-xl border border-gray-100">
+                    <img src="images/partners/vividseats.png" alt="Vivid Seats" class="max-h-full max-w-full object-contain grayscale hover:grayscale-0 transition">
+                </div>
+                <div class="h-12 w-full max-w-[140px] flex items-center justify-center p-2 bg-gray-50 rounded-xl border border-gray-100">
+                    <img src="images/partners/seatgeek.png" alt="SeatGeek" class="max-h-full max-w-full object-contain grayscale hover:grayscale-0 transition">
+                </div>
+                <div class="h-12 w-full max-w-[140px] flex items-center justify-center p-2 bg-gray-50 rounded-xl border border-gray-100">
+                    <img src="images/partners/ticketnetwork.png" alt="TicketNetwork" class="max-h-full max-w-full object-contain grayscale hover:grayscale-0 transition">
+                </div>
+                <div class="h-12 w-full max-w-[140px] flex items-center justify-center p-2 bg-gray-50 rounded-xl border border-gray-100">
+                    <img src="images/partners/gametime.png" alt="Gametime" class="max-h-full max-w-full object-contain grayscale hover:grayscale-0 transition">
+                </div>
+            </div>
+        </section>
+
+    </main>
+
+    <!-- Location Modal Interface overlay -->
+    <div id="location-modal" class="hidden fixed inset-0 bg-gray-900/50 backdrop-blur-sm z-50 flex items-center justify-center p-4">
+        <div class="bg-white w-full max-w-md rounded-3xl p-6 shadow-2xl space-y-4">
+            <div class="flex justify-between items-center">
+                <h3 class="text-xl font-bold text-gray-950">Change Location</h3>
+                <button onclick="toggleLocationModal(false)" class="text-gray-400 hover:text-gray-600 p-1">
+                    <i class="fa-solid fa-xmark text-lg"></i>
+                </button>
+            </div>
+            <div class="relative">
+                <i class="fa-solid fa-magnifying-glass absolute left-4 top-1/2 -translate-y-1/2 text-gray-400"></i>
+                <input id="city-search-input" type="text" placeholder="Search for cities..." class="w-full pl-10 pr-4 py-2.5 rounded-xl border border-gray-200 focus:outline-none focus:ring-2 focus:ring-blue-500 text-sm">
+            </div>
+            <div>
+                <h4 class="text-xs uppercase tracking-wider font-bold text-gray-400 mb-2">Popular Cities</h4>
+                <div class="grid grid-cols-2 gap-2">
+                    <button onclick="selectLocation('New York, NY')" class="text-left px-3 py-2 text-sm rounded-xl hover:bg-gray-50 border border-gray-100 font-medium text-gray-800 transition">New York, NY</button>
+                    <button onclick="selectLocation('Los Angeles, CA')" class="text-left px-3 py-2 text-sm rounded-xl hover:bg-gray-50 border border-gray-100 font-medium text-gray-800 transition">Los Angeles, CA</button>
+                    <button onclick="selectLocation('Chicago, IL')" class="text-left px-3 py-2 text-sm rounded-xl hover:bg-gray-50 border border-gray-100 font-medium text-gray-800 transition">Chicago, IL</button>
+                    <button onclick="selectLocation('Miami, FL')" class="text-left px-3 py-2 text-sm rounded-xl hover:bg-gray-50 border border-gray-100 font-medium text-gray-800 transition">Miami, FL</button>
+                    <button onclick="selectLocation('Dallas, TX')" class="text-left px-3 py-2 text-sm rounded-xl hover:bg-gray-50 border border-gray-100 font-medium text-gray-800 transition">Dallas, TX</button>
+                    <button onclick="selectLocation('London, UK')" class="text-left px-3 py-2 text-sm rounded-xl hover:bg-gray-50 border border-gray-100 font-medium text-gray-800 transition">London, UK</button>
+                </div>
+            </div>
+            <button onclick="applyCustomLocation()" class="w-full bg-blue-600 hover:bg-blue-700 text-white text-sm font-bold py-2.5 rounded-xl transition shadow-sm">
+                Apply Selection
+            </button>
+        </div>
+    </div>
+
+    <!-- Footer Component -->
+    <footer class="p-10 border-t bg-white w-full mt-auto">
+        <div class="max-w-7xl mx-auto flex flex-col sm:flex-row justify-between items-center gap-4 text-sm text-gray-600">
+            <div>© 2026 GetAllTix. All rights reserved.</div>
+            <div class="flex gap-6">
+                <a href="#" class="hover:text-blue-600 transition">About Us</a>
+                <a href="#" class="hover:text-blue-600 transition">Privacy Policy</a>
+                <a href="#" class="hover:text-blue-600 transition">Terms of Service</a>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Style Tweaks & Scripts -->
+    <style>
+        .no-scrollbar::-webkit-scrollbar { display: none; }
+        .no-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }
+    </style>
+
+    <script>
+        function scrollSuggested(direction) {
+            const container = document.getElementById('suggested-container');
+            const scrollAmount = 280;
+            container.scrollLeft += direction * scrollAmount;
+        }
+
+        function toggleLocationModal(show) {
+            const modal = document.getElementById('location-modal');
+            if(show) modal.classList.remove('hidden');
+            else modal.classList.add('hidden');
+        }
+
+        function selectLocation(cityName) {
+            document.getElementById('city-search-input').value = cityName;
+            executeLocationUpdate(cityName);
+        }
+
+        function applyCustomLocation() {
+            const customCity = document.getElementById('city-search-input').value;
+            if(customCity.trim() !== "") executeLocationUpdate(customCity);
+        }
+
+        function executeLocationUpdate(targetCity) {
+            document.getElementById('current-location-display').innerText = targetCity;
+            toggleLocationModal(false);
+        }
+    </script>
+</body>
+</html>
