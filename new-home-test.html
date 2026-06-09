@@ -1,0 +1,292 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>GetAllTix - Compare All Event Tickets on One Page</title>
+    <!-- Tailwind CSS Play CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- FontAwesome for Floating Menu Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+    <!-- Impact.com Affiliate Tracking Script -->
+    <script type="text/javascript">
+        (function(i,m,p,a,c,t){c.ire_o=p;c[p]=c[p]||function(){(c[p].a=c[p].a||[]).push(arguments)};t=a.createElement(m);
+        var z=a.getElementsByTagName(m)[0];t.async=1;t.src=i;z.parentNode.insertBefore(t,z)})
+        ('https://utt.impactcdn.com/P-A7378669-65aa-40ed-a1b0-753d27e5e8a21.js','script','impactStat',document,window);
+        
+        impactStat('transformLinks');
+        impactStat('trackImpression');
+    </script>
+</head>
+<body class="bg-gray-50 text-gray-900 flex flex-col min-h-screen">
+
+    <!-- Header Section -->
+    <header class="p-6 border-b bg-white sticky top-0 z-40 shadow-sm">
+        <div class="max-w-7xl mx-auto flex justify-between items-center">
+            <div class="flex items-center gap-3">
+                <img src="images/GetAllTix-logo-final-web-lg.png" alt="GetAllTix Logo" class="h-14 w-auto object-contain">
+            </div>
+            <span class="text-sm font-medium text-blue-600 bg-blue-50 px-3 py-1.5 rounded-full font-bold uppercase tracking-wider">⚽ World Cup 2026 Edition</span>
+        </div>
+    </header>
+
+    <!-- Low-Profile Floating Icon Navigation Menu Bar (Fixed Below Header) -->
+    <div class="fixed top-[105px] left-1/2 -translate-x-1/2 z-50 bg-gray-900/95 backdrop-blur-md px-8 py-1.5 rounded-b-2xl shadow-2xl border-x border-b border-white/10 flex items-center gap-6 sm:gap-8 md:gap-10 max-w-[95vw] overflow-x-auto no-scrollbar">
+        <!-- Home Icon -->
+        <a href="#" class="flex flex-col items-center gap-0.5 group text-blue-500 flex-shrink-0">
+            <i class="fa-solid fa-house text-2xl transition-transform group-hover:-translate-y-0.5"></i>
+            <span class="text-[11px] font-bold tracking-wide uppercase">Home</span>
+        </a>
+        <!-- NFL / Football Icon -->
+        <a href="#football" class="flex flex-col items-center gap-0.5 group text-gray-400 hover:text-white transition-colors flex-shrink-0">
+            <i class="fa-solid fa-football text-2xl transition-transform group-hover:-translate-y-0.5"></i>
+            <span class="text-[11px] font-medium tracking-wide uppercase">FOOTBALL</span>
+        </a>
+        <!-- NBA / Basketball Icon -->
+        <a href="#basketball" class="flex flex-col items-center gap-0.5 group text-gray-400 hover:text-white transition-colors flex-shrink-0">
+            <i class="fa-solid fa-basketball text-2xl transition-transform group-hover:-translate-y-0.5"></i>
+            <span class="text-[11px] font-medium tracking-wide uppercase">basketball</span>
+        </a>
+        <!-- MLB / Baseball Icon -->
+        <a href="#baseball" class="flex flex-col items-center gap-0.5 group text-gray-400 hover:text-white transition-colors flex-shrink-0">
+            <i class="fa-solid fa-baseball-bat-ball text-2xl transition-transform group-hover:-translate-y-0.5"></i>
+            <span class="text-[11px] font-medium tracking-wide uppercase">baseball</span>
+        </a>
+        <!-- Trophy Option -->
+        <a href="#soccer" class="flex flex-col items-center gap-0.5 group text-gray-400 hover:text-white transition-colors flex-shrink-0">
+            <i class="fa-solid fa-trophy text-2xl transition-transform group-hover:-translate-y-0.5"></i>
+            <span class="text-[11px] font-medium tracking-wide uppercase">Soccer</span>
+        </a>
+        <!-- Concerts Icon -->
+        <a href="#concerts" class="flex flex-col items-center gap-0.5 group text-gray-400 hover:text-white transition-colors flex-shrink-0">
+            <i class="fa-solid fa-music text-2xl transition-transform group-hover:-translate-y-0.5"></i>
+            <span class="text-[11px] font-medium tracking-wide uppercase">Music</span>
+        </a>
+        <!-- Theater Icon -->
+        <a href="#theater" class="flex flex-col items-center gap-0.5 group text-gray-400 hover:text-white transition-colors flex-shrink-0">
+            <i class="fa-solid fa-masks-theater text-2xl transition-transform group-hover:-translate-y-0.5"></i>
+            <span class="text-[11px] font-medium tracking-wide uppercase">Theater</span>
+        </a>
+        <!-- More Button (WWE, MMA, etc.) -->
+        <a href="#more-events" class="flex flex-col items-center gap-0.5 group text-gray-400 hover:text-white transition-colors flex-shrink-0">
+            <i class="fa-solid fa-ellipsis text-2xl transition-transform group-hover:-translate-y-0.5"></i>
+            <span class="text-[11px] font-medium tracking-wide uppercase">More</span>
+        </a>
+    </div>
+
+    <!-- Main Content Container -->
+    <main class="flex-grow max-w-7xl w-full mx-auto px-4 pt-20 pb-12 space-y-16">
+        
+        <!-- Hero Search Section -->
+        <section class="text-center max-w-3xl mx-auto pt-4">
+            <!-- Large Centered Logo Asset Above Headline -->
+            <img src="images/GetAllTix-logo-final-web-lg.png" alt="GetAllTix Logo" class="h-24 w-full max-w-xs mx-auto object-contain mb-6">
+
+            <h1 class="text-4xl md:text-5xl font-extrabold tracking-tight text-gray-950 mb-4">
+                Compare <span class="text-blue-600">All</span> Tickets on One Page
+            </h1>
+            <p class="text-lg text-gray-600 mb-8">
+                Search real-time listings from major secondary markets, teams, and venues with all-in pricing.
+            </p>
+            
+            <!-- Global Aggregator Search Bar -->
+            <form class="relative max-w-2xl mx-auto shadow-lg rounded-full group focus-within:ring-2 focus-within:ring-blue-500 transition-all">
+                <div class="absolute inset-y-0 left-0 flex items-center pl-6 pointer-events-none text-gray-400 group-focus-within:text-blue-600">
+                    <i class="fa-solid fa-magnifying-glass text-xl"></i>
+                </div>
+                <input type="text" placeholder="Search teams, artists, events, or venues..." class="w-full pl-14 pr-36 py-4 md:py-5 rounded-full text-lg border border-gray-200 bg-white focus:outline-none text-gray-900 placeholder-gray-400" value="Featured Test Events">
+                <button type="submit" class="absolute right-2 top-2 bottom-2 bg-blue-600 hover:bg-blue-700 text-white font-bold px-6 rounded-full transition text-sm md:text-base">
+                    Find Tickets
+                </button>
+            </form>
+        </section>
+
+        <!-- Test Events Listings Grid Component -->
+        <section class="space-y-6">
+            <div class="flex flex-col sm:flex-row justify-between items-start sm:items-center border-b pb-4 gap-2">
+                <div>
+                    <h2 class="text-2xl font-extrabold text-gray-950 tracking-tight">Active Test Matrix</h2>
+                    <p class="text-sm text-gray-500">Live target tracking for API comparison scripts</p>
+                </div>
+                <span class="text-xs font-mono bg-gray-200 text-gray-700 px-2.5 py-1 rounded-md uppercase">3 Results Active</span>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+                
+                <!-- Event 1: MLB Rivalry -->
+                <div id="baseball" class="bg-white border border-gray-200 rounded-3xl overflow-hidden shadow-sm flex flex-col hover:border-blue-300 transition duration-300">
+                    <div class="p-6 flex-grow space-y-4">
+                        <div class="flex justify-between items-start">
+                            <span class="text-xs font-bold uppercase tracking-wider px-2.5 py-1 rounded-full bg-red-50 text-red-600 border border-red-100">
+                                <i class="fa-solid fa-baseball-bat-ball mr-1"></i> MLB Baseball
+                            </span>
+                            <span class="text-xs font-medium text-gray-400 font-mono">ID: 2026-MLB-0704</span>
+                        </div>
+                        <div>
+                            <h3 class="text-xl font-bold text-gray-950 leading-tight">St. Louis Cardinals <span class="text-gray-400 font-normal text-base">at</span> Chicago Cubs</h3>
+                            <p class="text-sm text-blue-600 font-semibold mt-1">4th of July Holiday Classic</p>
+                        </div>
+                        <div class="space-y-2 pt-2 border-t text-sm text-gray-600">
+                            <div class="flex items-center gap-2.5">
+                                <i class="fa-regular fa-calendar-days text-gray-400 w-4 text-center"></i>
+                                <span class="font-medium text-gray-900">July 4, 2026</span>
+                            </div>
+                            <div class="flex items-center gap-2.5">
+                                <i class="fa-regular fa-clock text-gray-400 w-4 text-center"></i>
+                                <span>7:08 PM CST</span>
+                            </div>
+                            <div class="flex items-center gap-2.5">
+                                <i class="fa-solid fa-location-dot text-gray-400 w-4 text-center"></i>
+                                <span class="truncate">Wrigley Field — Chicago, IL</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="bg-gray-50 border-t p-4 flex items-center justify-between">
+                        <div>
+                            <span class="block text-[10px] uppercase font-bold text-gray-400 tracking-wider">Lowest Aggregated Price</span>
+                            <span class="text-xl font-black text-gray-950">$84<span class="text-xs font-normal text-gray-500"> w/ fees</span></span>
+                        </div>
+                        <a href="#" class="bg-blue-600 hover:bg-blue-700 text-white text-sm font-bold py-2.5 px-4 rounded-xl transition shadow-sm">
+                            Compare Seats
+                        </a>
+                    </div>
+                </div>
+
+                <!-- Event 2: World Cup 2026 Match -->
+                <div id="soccer" class="bg-white border border-gray-200 rounded-3xl overflow-hidden shadow-sm flex flex-col hover:border-blue-300 transition duration-300">
+                    <div class="p-6 flex-grow space-y-4">
+                        <div class="flex justify-between items-start">
+                            <span class="text-xs font-bold uppercase tracking-wider px-2.5 py-1 rounded-full bg-emerald-50 text-emerald-600 border border-emerald-100">
+                                <i class="fa-solid fa-trophy mr-1"></i> FIFA World Cup '26
+                            </span>
+                            <span class="text-xs font-medium text-gray-400 font-mono">ID: 2026-WC-GRPD</span>
+                        </div>
+                        <div>
+                            <h3 class="text-xl font-bold text-gray-950 leading-tight">United States <span class="text-gray-400 font-normal text-base">vs</span> Paraguay</h3>
+                            <p class="text-sm text-emerald-600 font-semibold mt-1">Group D Tournament Stage</p>
+                        </div>
+                        <div class="space-y-2 pt-2 border-t text-sm text-gray-600">
+                            <div class="flex items-center gap-2.5">
+                                <i class="fa-regular fa-calendar-days text-gray-400 w-4 text-center"></i>
+                                <span class="font-medium text-gray-900">June 12, 2026</span>
+                            </div>
+                            <div class="flex items-center gap-2.5">
+                                <i class="fa-regular fa-clock text-gray-400 w-4 text-center"></i>
+                                <span>6:00 PM PST</span>
+                            </div>
+                            <div class="flex items-center gap-2.5">
+                                <i class="fa-solid fa-location-dot text-gray-400 w-4 text-center"></i>
+                                <span class="truncate">Los Angeles Stadium (SoFi) — CA</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="bg-gray-50 border-t p-4 flex items-center justify-between">
+                        <div>
+                            <span class="block text-[10px] uppercase font-bold text-gray-400 tracking-wider">Lowest Aggregated Price</span>
+                            <span class="text-xl font-black text-gray-950">$245<span class="text-xs font-normal text-gray-500"> w/ fees</span></span>
+                        </div>
+                        <a href="#" class="bg-blue-600 hover:bg-blue-700 text-white text-sm font-bold py-2.5 px-4 rounded-xl transition shadow-sm">
+                            Compare Seats
+                        </a>
+                    </div>
+                </div>
+
+                <!-- Event 3: Premium Championship Event -->
+                <div id="football" class="bg-white border border-gray-200 rounded-3xl overflow-hidden shadow-sm flex flex-col hover:border-blue-300 transition duration-300">
+                    <div class="p-6 flex-grow space-y-4">
+                        <div class="flex justify-between items-start">
+                            <span class="text-xs font-bold uppercase tracking-wider px-2.5 py-1 rounded-full bg-amber-50 text-amber-600 border border-amber-100">
+                                <i class="fa-solid fa-football mr-1"></i> NFL Football
+                            </span>
+                            <span class="text-xs font-medium text-gray-400 font-mono">ID: 2027-NFL-SB</span>
+                        </div>
+                        <div>
+                            <h3 class="text-xl font-bold text-gray-950 leading-tight">Super Bowl LXI</h3>
+                            <p class="text-sm text-amber-600 font-semibold mt-1">NFL Championship Game</p>
+                        </div>
+                        <div class="space-y-2 pt-2 border-t text-sm text-gray-600">
+                            <div class="flex items-center gap-2.5">
+                                <i class="fa-regular fa-calendar-days text-gray-400 w-4 text-center"></i>
+                                <span class="font-medium text-gray-900">February 14, 2027</span>
+                            </div>
+                            <div class="flex items-center gap-2.5">
+                                <i class="fa-regular fa-clock text-gray-400 w-4 text-center"></i>
+                                <span>5:30 PM PST</span>
+                            </div>
+                            <div class="flex items-center gap-2.5">
+                                <i class="fa-solid fa-location-dot text-gray-400 w-4 text-center"></i>
+                                <span class="truncate">SoFi Stadium — Inglewood, CA</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="bg-gray-50 border-t p-4 flex items-center justify-between">
+                        <div>
+                            <span class="block text-[10px] uppercase font-bold text-gray-400 tracking-wider">Lowest Aggregated Price</span>
+                            <span class="text-xl font-black text-gray-950">$5,400<span class="text-xs font-normal text-gray-500"> w/ fees</span></span>
+                        </div>
+                        <a href="#" class="bg-blue-600 hover:bg-blue-700 text-white text-sm font-bold py-2.5 px-4 rounded-xl transition shadow-sm">
+                            Compare Seats
+                        </a>
+                    </div>
+                </div>
+
+            </div>
+        </section>
+
+        <!-- Partner & Vendor Logo Layout Grid -->
+        <section class="bg-white border border-gray-100 rounded-3xl p-8 md:p-12 shadow-sm">
+            <div class="text-center mb-8">
+                <h2 class="text-xs uppercase tracking-widest font-bold text-gray-400">Aggregating Direct & Marketplace Inventory From</h2>
+            </div>
+            
+            <div class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-6 gap-8 items-center justify-items-center opacity-75 hover:opacity-100 transition-opacity duration-300">
+                <!-- Ticketmaster -->
+                <div class="h-12 w-full max-w-[140px] flex items-center justify-center p-2 bg-gray-50 rounded-xl border border-gray-100">
+                    <img src="images/partners/ticketmaster.png" alt="Ticketmaster" class="max-h-full max-w-full object-contain grayscale hover:grayscale-0 transition">
+                </div>
+                <!-- StubHub -->
+                <div class="h-12 w-full max-w-[140px] flex items-center justify-center p-2 bg-gray-50 rounded-xl border border-gray-100">
+                    <img src="images/partners/stubhub.png" alt="StubHub" class="max-h-full max-w-full object-contain grayscale hover:grayscale-0 transition">
+                </div>
+                <!-- Vivid Seats -->
+                <div class="h-12 w-full max-w-[140px] flex items-center justify-center p-2 bg-gray-50 rounded-xl border border-gray-100">
+                    <img src="images/partners/vividseats.png" alt="Vivid Seats" class="max-h-full max-w-full object-contain grayscale hover:grayscale-0 transition">
+                </div>
+                <!-- SeatGeek -->
+                <div class="h-12 w-full max-w-[140px] flex items-center justify-center p-2 bg-gray-50 rounded-xl border border-gray-100">
+                    <img src="images/partners/seatgeek.png" alt="SeatGeek" class="max-h-full max-w-full object-contain grayscale hover:grayscale-0 transition">
+                </div>
+                <!-- TicketNetwork -->
+                <div class="h-12 w-full max-w-[140px] flex items-center justify-center p-2 bg-gray-50 rounded-xl border border-gray-100">
+                    <img src="images/partners/ticketnetwork.png" alt="TicketNetwork" class="max-h-full max-w-full object-contain grayscale hover:grayscale-0 transition">
+                </div>
+                <!-- Gametime -->
+                <div class="h-12 w-full max-w-[140px] flex items-center justify-center p-2 bg-gray-50 rounded-xl border border-gray-100">
+                    <img src="images/partners/gametime.png" alt="Gametime" class="max-h-full max-w-full object-contain grayscale hover:grayscale-0 transition">
+                </div>
+            </div>
+        </section>
+
+    </main>
+
+    <!-- Footer Component -->
+    <footer class="p-10 border-t bg-white w-full mt-auto">
+        <div class="max-w-7xl mx-auto flex flex-col sm:flex-row justify-between items-center gap-4 text-sm text-gray-600">
+            <div>© 2026 GetAllTix. All rights reserved.</div>
+            <div class="flex gap-6">
+                <a href="#" class="hover:text-blue-600 transition">About Us</a>
+                <a href="#" class="hover:text-blue-600 transition">Privacy Policy</a>
+                <a href="#" class="hover:text-blue-600 transition">Terms of Service</a>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Optional CSS helper to hide scrollbar on mobile layout overflow -->
+    <style>
+        .no-scrollbar::-webkit-scrollbar { display: none; }
+        .no-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }
+    </style>
+
+</body>
+</html>
