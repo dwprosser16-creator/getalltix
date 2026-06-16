@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>About Us - GetAllTix</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-weight/6.0.0/css/all.min.css">
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        brandBlue: '#2563eb',
+                        brandHover: '#1d4ed8',
+                        darkBg: '#1e293b'
+                    }
+                }
+            }
+        }
+    </script>
+</head>
+<body class="bg-slate-50 text-slate-800 antialiased min-h-screen flex flex-col">
+
+    <!-- Header / Navigation -->
+    <header class="bg-white shadow-sm sticky top-0 z-50">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-20 flex items-center justify-between">
+            <!-- Logo -->
+            <a href="new-home-layout-06092026-final.html" class="flex items-center space-x-2">
+                <img src="https://getalltix.com/logo.png" alt="GetAllTix Logo" class="h-10 w-auto onerror='this.style.display=\"none\"'">
+
+            <!-- Navigation Links -->
+            <nav class="hidden md:flex items-center space-x-1 bg-darkBg text-white rounded-full px-4 py-1.5 shadow-md">
+                <a href="new-home-layout-06092026-final.html" class="px-3 py-1.5 rounded-full text-sm font-medium hover:bg-slate-700 transition">HOME</a>
+                <a href="#" class="px-3 py-1.5 rounded-full text-sm font-medium hover:bg-slate-700 transition">FOOTBALL</a>
+                <a href="#" class="px-3 py-1.5 rounded-full text-sm font-medium hover:bg-slate-700 transition">BASKETBALL</a>
+                <div class="relative group">
+                    <button class="px-3 py-1.5 rounded-full text-sm font-medium hover:bg-slate-700 transition flex items-center space-x-1">
+                        <span>BASEBALL</span>
+                        <i class="fas fa-chevron-down text-xs opacity-70"></i>
+                    </button>
+                </div>
+                <a href="#" class="px-3 py-1.5 rounded-full text-sm font-medium hover:bg-slate-700 transition">HOCKEY</a>
+                <a href="#" class="px-3 py-1.5 rounded-full text-sm font-medium hover:bg-slate-700 transition">SOCCER</a>
+                <a href="#" class="px-3 py-1.5 rounded-full text-sm font-medium hover:bg-slate-700 transition">MUSIC</a>
+                <a href="#" class="px-3 py-1.5 rounded-full text-sm font-medium hover:bg-slate-700 transition">THEATER</a>
+            </nav>
+
+            <!-- Action Button -->
+            <div>
+                <a href="new-home-layout-06092026-final.html" class="inline-flex items-center justify-center px-5 py-2.5 rounded-full bg-brandBlue text-white font-semibold text-sm shadow-md hover:bg-brandHover hover:shadow-lg transition transform active:scale-95">
+                    <i class="fas fa-search mr-2 text-xs opacity-90"></i> Find Tickets
+                </a>
+            </div>
+        </div>
+    </header>
+
+    <!-- Main Content Hero Section -->
+    <main class="flex-grow">
+        <div class="bg-gradient-to-b from-white to-slate-50 border-b border-slate-100 py-16 px-4 sm:px-6 lg:px-8 text-center">
+            <div class="max-w-3xl mx-auto">
+                <h1 class="text-4xl sm:text-5xl font-black text-slate-900 tracking-tight mb-4">
+                    About <span class="text-brandBlue">GetAllTix.com</span>
+                </h1>
+                <p class="text-xl sm:text-2xl font-bold text-slate-600 max-w-2xl mx-auto leading-relaxed">
+                    One search. Every marketplace. All-in pricing.
+                </p>
+            </div>
+        </div>
+
+        <!-- Content Grid Sections -->
+        <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-16 space-y-16">
+            
+            <!-- Our Mission -->
+            <section class="bg-white rounded-2xl p-8 sm:p-10 shadow-sm border border-slate-100 flex flex-col md:flex-row items-start md:space-x-8">
+                <div class="bg-blue-50 text-brandBlue p-4 rounded-xl mb-4 md:mb-0 shadow-sm">
+                    <i class="fas fa-bullseye text-2xl w-8 h-8 flex items-center justify-center"></i>
+                </div>
+                <div>
+                    <h2 class="text-2xl font-extrabold text-slate-900 mb-4">Our mission</h2>
+                    <p class="text-slate-600 leading-relaxed text-lg">
+                        GetAllTix.com was built for fans who are tired of opening a dozen browser tabs to figure out which site has the best seats at the best price. We aggregate live inventory from the major secondary marketplaces, official team and venue sellers, and trusted resale partners — then show every option side-by-side with transparent, all-in pricing.
+                    </p>
+                </div>
+            </section>
+
+            <!-- What We Do -->
+            <section class="bg-white rounded-2xl p-8 sm:p-10 shadow-sm border border-slate-100 flex flex-col md:flex-row items-start md:space-x-8">
+                <div class="bg-blue-50 text-brandBlue p-4 rounded-xl mb-4 md:mb-0 shadow-sm">
+                    <i class="fas fa-layer-group text-2xl w-8 h-8 flex items-center justify-center"></i>
+                </div>
+                <div>
+                    <h2 class="text-2xl font-extrabold text-slate-900 mb-4">What we do</h2>
+                    <p class="text-slate-600 leading-relaxed text-lg">
+                        We index millions of listings across sports, concerts, theater, and live events. When you search for a team, artist, venue, or event, we surface the lowest verified price for each seat — including fees — and link you directly to the marketplace selling the ticket. We never resell tickets ourselves; we simply make the market visible.
+                    </p>
+                </div>
+            </section>
+
+            <!-- Why Fans Use Us -->
+            <section class="bg-white rounded-2xl p-8 sm:p-10 shadow-sm border border-slate-100 flex flex-col md:flex-row items-start md:space-x-8">
+                <div class="bg-blue-50 text-brandBlue p-4 rounded-xl mb-4 md:mb-0 shadow-sm">
+                    <i class="fas fa-star text-2xl w-8 h-8 flex items-center justify-center"></i>
+                </div>
+                <div>
+                    <h2 class="text-2xl font-extrabold text-slate-900 mb-4">Why fans use us</h2>
+                    <p class="text-slate-600 leading-relaxed text-lg">
+                        Ticket prices for the same seat can vary by 30% or more between marketplaces, and headline prices rarely include fees. GetAllTix.com compares everything in real time so you always know you're getting a fair deal. No hidden markup. No upsells. Just the full picture.
+                    </p>
+                </div>
+            </section>
+
+            <!-- Get in Touch -->
+            <section class="bg-darkBg text-white rounded-2xl p-8 sm:p-10 shadow-xl text-center relative overflow-hidden">
+                <div class="absolute inset-0 opacity-10 bg-[radial-gradient(#fff_1px,transparent_1px)] [background-size:16px_16px]"></div>
+                <div class="relative z-10 max-w-xl mx-auto">
+                    <h2 class="text-2xl font-extrabold mb-4">Get in touch</h2>
+                    <p class="text-slate-300 mb-6 text-lg">
+                        Questions, partnership requests, or feedback? Reach our team directly.
+                    </p>
+                    <a href="mailto:info@getalltix.com" class="inline-flex items-center justify-center px-6 py-3 rounded-full bg-white text-darkBg font-bold hover:bg-slate-100 transition shadow-md">
+                        <i class="fas fa-envelope mr-2"></i> info@getalltix.com
+                    </a>
+                </div>
+            </section>
+        </div>
+    </main>
+
+    <!-- Partner & Network Footer -->
+    <footer class="bg-white border-t border-slate-100 mt-12">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
+            <p class="text-xs font-bold tracking-wider text-slate-400 uppercase text-center mb-6">
+                AGGREGATING DIRECT & MARKETPLACE INVENTORY FROM
+            </p>
+            <div class="flex flex-wrap justify-center items-center gap-x-6 gap-y-3 text-sm font-semibold text-slate-400 mb-8 max-w-4xl mx-auto text-center">
+                <span>Ticketmaster</span><span>StubHub</span><span>Vivid Seats</span><span>SeatGeek</span>
+                <span>TicketNetwork</span><span>Gametime</span><span>MegaSeats</span><span>TickPick</span>
+                <span>MLB Authorized</span><span>NFL Ticket Exchange</span><span>NBA Tickets</span>
+                <span>NHL Ticket Exchange</span><span>AXS</span><span>Eventbrite</span><span>Telecharge</span>
+                <span>Broadways.com</span>
+            </div>
+            
+            <hr class="border-slate-100 mb-6">
+            
+            <div class="flex flex-col sm:flex-row items-center justify-between text-sm text-slate-500 gap-y-4">
+                <p>© 2026 GetAllTix. All rights reserved.</p>
+                <div class="flex space-x-6">
+                    <a href="#" class="hover:text-brandBlue transition">About Us</a>
+                    <a href="#" class="hover:text-brandBlue transition">Privacy Policy</a>
+                    <a href="#" class="hover:text-brandBlue transition">Terms of Service</a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+</body>
+</html>
