@@ -276,7 +276,7 @@
                 <button onclick="toggleLocationModal(true)" class="text-sm font-bold text-blue-600 hover:text-blue-700 transition tracking-wide px-1">
                     Edit
                 </button>
-                <button class="bg-blue-600 hover:bg-blue-700 text-white text-xs font-bold px-3 py-1.5 rounded-full transition ml-1">
+                <button onclick="handleExploreLocation()" class="bg-blue-600 hover:bg-blue-700 text-white text-xs font-bold px-3 py-1.5 rounded-full transition ml-1">
                     Explore
                 </button>
             </div>
@@ -470,7 +470,104 @@
             </div>
         </section>
 
-        <!-- 3. Concerts Section (4-Column Layout) -->
+        <!-- 3. Chicago Holiday Weekend Spotlight Section (Dynamic Destination Addition) -->
+        <section id="chicago-spotlight" class="space-y-6 scroll-mt-24 bg-blue-50/40 border border-blue-100/50 p-6 rounded-3xl">
+            <div>
+                <div class="flex items-center gap-2 mb-1">
+                    <span class="text-[10px] font-extrabold uppercase tracking-widest px-2 py-0.5 bg-blue-600 text-white rounded-md">Spotlight</span>
+                    <h2 class="text-2xl font-extrabold text-gray-950 tracking-tight">Chicago July 4th Weekend Lineup</h2>
+                </div>
+                <p class="text-sm text-gray-500">Top upcoming matches, festival rosters, and summer events from July 2 to July 6, 2026</p>
+            </div>
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
+                <!-- Chicago Card 1 -->
+                <div class="ticket-card bg-white border border-gray-200 rounded-2xl overflow-hidden shadow-sm flex flex-col hover:border-blue-300 transition duration-300" data-platform="ticketmaster" data-event-url="https://www.ticketmaster.com/event/chicago-cubs-july-4">
+                    <div class="relative w-full pt-[60%] bg-gray-100">
+                        <img src="https://cdn.tickpick.com/images/performers/chicago-cubs.jpg" alt="Chicago Cubs Matchup" class="absolute inset-0 w-full h-full object-cover">
+                    </div>
+                    <div class="p-4 flex-grow space-y-2">
+                        <div class="flex justify-between items-center">
+                            <span class="text-[10px] font-bold uppercase tracking-wider px-2 py-0.5 rounded-full bg-blue-50 text-blue-600 border border-blue-100">MLB Baseball</span>
+                            <span class="text-xs font-bold text-blue-600">JUL 04</span>
+                        </div>
+                        <h3 class="text-base font-bold text-gray-950 leading-tight line-clamp-2">Chicago Cubs Holiday Weekend Series</h3>
+                        <p class="text-xs text-gray-500 truncate">Wrigley Field — Chicago, IL</p>
+                    </div>
+                    <div class="bg-gray-50 border-t p-3 flex items-center justify-between">
+                        <div>
+                            <span class="block text-[9px] uppercase font-bold text-gray-400">From</span>
+                            <span class="price-display text-base font-black text-gray-950">$48</span>
+                        </div>
+                        <a href="#" class="bg-blue-600 hover:bg-blue-700 text-white text-xs font-bold py-2 px-3 rounded-lg transition">Compare</a>
+                    </div>
+                </div>
+                <!-- Chicago Card 2 -->
+                <div class="ticket-card bg-white border border-gray-200 rounded-2xl overflow-hidden shadow-sm flex flex-col hover:border-blue-300 transition duration-300" data-platform="stubhub" data-event-url="https://www.stubhub.com/event/chicago-white-sox-july-home">
+                    <div class="relative w-full pt-[60%] bg-gray-100">
+                        <img src="https://cdn.tickpick.com/images/performers/chicago-white-sox.jpg" alt="Chicago White Sox Matchup" class="absolute inset-0 w-full h-full object-cover">
+                    </div>
+                    <div class="p-4 flex-grow space-y-2">
+                        <div class="flex justify-between items-center">
+                            <span class="text-[10px] font-bold uppercase tracking-wider px-2 py-0.5 rounded-full bg-slate-100 text-slate-700 border border-slate-200">MLB Baseball</span>
+                            <span class="text-xs font-bold text-blue-600">JUL 03</span>
+                        </div>
+                        <h3 class="text-base font-bold text-gray-950 leading-tight line-clamp-2">Chicago White Sox Summer Action</h3>
+                        <p class="text-xs text-gray-500 truncate">Guaranteed Rate Field — Chicago, IL</p>
+                    </div>
+                    <div class="bg-gray-50 border-t p-3 flex items-center justify-between">
+                        <div>
+                            <span class="block text-[9px] uppercase font-bold text-gray-400">From</span>
+                            <span class="price-display text-base font-black text-gray-950">$24</span>
+                        </div>
+                        <a href="#" class="bg-blue-600 hover:bg-blue-700 text-white text-xs font-bold py-2 px-3 rounded-lg transition">Compare</a>
+                    </div>
+                </div>
+                <!-- Chicago Card 3 -->
+                <div class="ticket-card bg-white border border-gray-200 rounded-2xl overflow-hidden shadow-sm flex flex-col hover:border-blue-300 transition duration-300" data-platform="seatgeek" data-event-url="https://seatgeek.com/event/chicago-fire-fc-july-fest">
+                    <div class="relative w-full pt-[60%] bg-gray-100">
+                        <img src="https://cdn.tickpick.com/images/performers/chicago-fire.jpg" alt="Chicago Fire FC Matchup" class="absolute inset-0 w-full h-full object-cover">
+                    </div>
+                    <div class="p-4 flex-grow space-y-2">
+                        <div class="flex justify-between items-center">
+                            <span class="text-[10px] font-bold uppercase tracking-wider px-2 py-0.5 rounded-full bg-red-50 text-red-600 border border-red-100">MLS Soccer</span>
+                            <span class="text-xs font-bold text-blue-600">JUL 05</span>
+                        </div>
+                        <h3 class="text-base font-bold text-gray-950 leading-tight line-clamp-2">Chicago Fire FC Regular Season Match</h3>
+                        <p class="text-xs text-gray-500 truncate">Soldier Field — Chicago, IL</p>
+                    </div>
+                    <div class="bg-gray-50 border-t p-3 flex items-center justify-between">
+                        <div>
+                            <span class="block text-[9px] uppercase font-bold text-gray-400">From</span>
+                            <span class="price-display text-base font-black text-gray-950">$32</span>
+                        </div>
+                        <a href="#" class="bg-blue-600 hover:bg-blue-700 text-white text-xs font-bold py-2 px-3 rounded-lg transition">Compare</a>
+                    </div>
+                </div>
+                <!-- Chicago Card 4 -->
+                <div class="ticket-card bg-white border border-gray-200 rounded-2xl overflow-hidden shadow-sm flex flex-col hover:border-blue-300 transition duration-300" data-platform="vividseats" data-event-url="https://www.vividseats.com/event/chicago-summer-festivals-holiday">
+                    <div class="relative w-full pt-[60%] bg-gray-100">
+                        <img src="https://cdn.tickpick.com/images/performers/chicago-theater-performers.jpg" alt="Chicago Music Festival" class="absolute inset-0 w-full h-full object-cover">
+                    </div>
+                    <div class="p-4 flex-grow space-y-2">
+                        <div class="flex justify-between items-center">
+                            <span class="text-[10px] font-bold uppercase tracking-wider px-2 py-0.5 rounded-full bg-purple-50 text-purple-600 border border-purple-100">Festivals / Rock</span>
+                            <span class="text-xs font-bold text-blue-600">JUL 02-06</span>
+                        </div>
+                        <h3 class="text-base font-bold text-gray-950 leading-tight line-clamp-2">Chicago Summer Sounds & Outdoor Concert Pass</h3>
+                        <p class="text-xs text-gray-500 truncate">Grant Park & Main Arenas — Chicago, IL</p>
+                    </div>
+                    <div class="bg-gray-50 border-t p-3 flex items-center justify-between">
+                        <div>
+                            <span class="block text-[9px] uppercase font-bold text-gray-400">From</span>
+                            <span class="price-display text-base font-black text-gray-950">$85</span>
+                        </div>
+                        <a href="#" class="bg-blue-600 hover:bg-blue-700 text-white text-xs font-bold py-2 px-3 rounded-lg transition">Compare</a>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- 4. Concerts Section (4-Column Layout) -->
         <section id="concerts" class="space-y-6 scroll-mt-24">
             <div>
                 <h2 class="text-2xl font-extrabold text-gray-950 tracking-tight">Concerts</h2>
@@ -564,7 +661,7 @@
             </div>
         </section>
 
-        <!-- 4. Theater Section (4-Column Layout) -->
+        <!-- 5. Theater Section (4-Column Layout) -->
         <section id="theater" class="space-y-6 scroll-mt-24">
             <div>
                 <h2 class="text-2xl font-extrabold text-gray-950 tracking-tight">Theater</h2>
@@ -658,7 +755,7 @@
             </div>
         </section>
 
-        <!-- 5. Trending Performers Section (Updated to 12 Cards: 3 Rows of 4 Columns) -->
+        <!-- 6. Trending Performers Section -->
         <section id="trending" class="space-y-6 scroll-mt-24">
             <div>
                 <h2 class="text-2xl font-extrabold text-gray-950 tracking-tight">Trending Performers</h2>
@@ -778,7 +875,7 @@
                         <span class="absolute top-2 left-2 bg-blue-600 text-white text-xs font-black px-2.5 py-1 rounded-lg shadow-md">#8</span>
                     </div>
                     <div class="p-4 flex-grow space-y-2">
-                        <h3 class="text-base font-bold text-gray-950 leading-tight line-clamp-1">Usher</h3>
+                        <h3 class="text-base font-bold text-gray-950 leading-tight line-clamp-1">Share Usher Tickets</h3>
                         <p class="text-xs text-gray-500">R&B / Las Vegas Showmanship</p>
                     </div>
                     <div class="bg-gray-50 border-t p-3">
@@ -940,6 +1037,19 @@
         function executeLocationUpdate(targetCity) {
             document.getElementById('current-location-display').innerText = targetCity;
             toggleLocationModal(false);
+        }
+
+        // Logic routing for the Explore Location button actions
+        function handleExploreLocation() {
+            const activeCity = document.getElementById('current-location-display').innerText;
+            if (activeCity.includes("Chicago")) {
+                const targetSec = document.getElementById('chicago-spotlight');
+                if (targetSec) {
+                    targetSec.scrollIntoView({ behavior: 'smooth' });
+                }
+            } else {
+                console.log(`Explore metrics triggered for current city: ${activeCity}`);
+            }
         }
 
         // --- TicketsData API Integration Layer ---
